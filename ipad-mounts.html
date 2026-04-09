@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heckler | iPad Mounts — Wall Mounts, Room Schedulers &amp; Digital Signage</title>
+  <link rel="stylesheet" href="styles_v2.css">
+  <style>
+    .hk-page-hero {
+      background: #f5f7fa;
+      color: #1A1B18;
+      padding: clamp(48px, 7vw, 88px) clamp(24px, 5vw, 72px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .hk-page-eyebrow {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #0099CC; margin-bottom: 14px;
+    }
+    .hk-page-hero h1 {
+      font-size: clamp(32px, 4.5vw, 58px); font-weight: 900;
+      line-height: 1.05; margin: 0 0 16px;
+    }
+    .hk-page-hero p {
+      font-size: 1rem; color: #555; line-height: 1.65;
+      margin: 0 0 28px; max-width: 480px;
+    }
+    .hk-page-hero-img img {
+      width: 100%; height: clamp(280px, 35vw, 460px);
+      object-fit: contain; border-radius: 16px;
+    }
+    .hk-cta-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #0EBBFF; color: #1A1B18; border-radius: 999px;
+      padding: 12px 24px; font-size: 0.87rem; font-weight: 700;
+      text-decoration: none; transition: opacity .2s;
+    }
+    .hk-cta-pill:hover { opacity: .85; }
+
+    /* Feature row */
+    .hk-feat-row {
+      background: #1A1B18;
+      display: flex; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hk-feat-item {
+      flex: 1; display: flex; align-items: center; gap: 14px;
+      padding: 22px 28px; border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .hk-feat-item:last-child { border-right: none; }
+    .hk-feat-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: rgba(14,187,255,0.12); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hk-feat-icon svg { width: 20px; height: 20px; stroke: #0EBBFF; fill: none; stroke-width: 2; }
+    .hk-feat-text h4 { font-size: 0.85rem; font-weight: 700; color: #fff; margin: 0 0 2px; }
+    .hk-feat-text p { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin: 0; }
+
+    /* Product sections */
+    .hk-section { padding: clamp(48px, 6vw, 80px) clamp(20px, 4vw, 60px); }
+    .hk-section--dark { background: #1A1B18; }
+    .hk-section--light { background: #fff; }
+    .hk-section--alt { background: #f5f7fa; }
+    .hk-section-inner { max-width: 1200px; margin: 0 auto; }
+    .hk-section-hdr { margin-bottom: 40px; }
+    .hk-section-eyebrow {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #0EBBFF; margin-bottom: 8px;
+    }
+    .hk-section-hdr h2 {
+      font-size: clamp(24px, 3vw, 38px); font-weight: 900;
+      line-height: 1.1; color: #1A1B18; margin-bottom: 10px;
+    }
+    .hk-section--dark .hk-section-hdr h2 { color: #fff; }
+    .hk-section-hdr p { font-size: 0.95rem; color: #666; line-height: 1.6; max-width: 600px; }
+    .hk-section--dark .hk-section-hdr p { color: rgba(255,255,255,0.6); }
+
+    .hk-product-grid { display: grid; gap: 20px; }
+    .hk-product-grid--4 { grid-template-columns: repeat(4, 1fr); }
+    .hk-product-grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+    .hk-card {
+      border-radius: 16px; overflow: hidden; background: #fff;
+      border: 1px solid #e8eaed; text-decoration: none; color: #1A1B18;
+      display: flex; flex-direction: column; position: relative;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .hk-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.12); transform: translateY(-2px); }
+    .hk-card--dark { background: #22231F; color: #fff; border: none; }
+    .hk-card-img {
+      height: 200px; background: #f5f7fa;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hk-card--dark .hk-card-img { background: #2d2e2a; }
+    .hk-card-img img { width: 100%; height: 100%; object-fit: contain; padding: 14px; }
+    .hk-card-body { padding: 14px 14px 48px; flex: 1; }
+    .hk-card-model {
+      font-size: 0.67rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #0EBBFF; margin-bottom: 4px;
+    }
+    .hk-card-name { font-size: 0.87rem; font-weight: 700; line-height: 1.3; margin-bottom: 5px; }
+    .hk-card-specs { font-size: 0.76rem; color: #666; line-height: 1.45; }
+    .hk-card--dark .hk-card-specs { color: rgba(255,255,255,0.5); }
+    .hk-card-buy {
+      position: absolute; bottom: 12px; left: 12px;
+      background: #0EBBFF; color: #1A1B18; border-radius: 999px;
+      padding: 6px 16px; font-size: 0.73rem; font-weight: 700;
+    }
+
+    .hk-banner {
+      background: #1A1B18; padding: clamp(48px, 6vw, 72px) clamp(24px, 5vw, 60px);
+      text-align: center;
+    }
+    .hk-banner .eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #0EBBFF; margin-bottom: 12px; }
+    .hk-banner h2 { font-size: clamp(26px, 3.5vw, 44px); font-weight: 900; color: #fff; margin-bottom: 14px; }
+    .hk-banner p { font-size: 0.95rem; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto 32px; line-height: 1.6; }
+    .hk-banner-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hk-banner-btns a { border-radius: 999px; padding: 13px 28px; font-size: 0.88rem; font-weight: 700; text-decoration: none; }
+    .hk-banner-btns .primary { background: #0EBBFF; color: #1A1B18; }
+    .hk-banner-btns .outline { border: 2px solid rgba(255,255,255,0.28); color: #fff; }
+
+    @media (max-width: 860px) {
+      .hk-page-hero { grid-template-columns: 1fr; }
+      .hk-page-hero-img { display: none; }
+      .hk-product-grid--4 { grid-template-columns: repeat(2, 1fr); }
+      .hk-product-grid--3 { grid-template-columns: repeat(2, 1fr); }
+      .hk-feat-row { flex-wrap: wrap; }
+    }
+    @media (max-width: 540px) {
+      .hk-product-grid--4, .hk-product-grid--3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="site-header"></div>
+  <div class="brand-store-wrap">
+
+  <div class="breadcrumb" style="padding:10px clamp(20px,4vw,60px); background:#f3f3f3; font-size:0.78rem; color:#555;">
+    <a href="index.html" style="color:#0099CC;">Heckler</a> › iPad Mounts
+  </div>
+
+  <!-- Hero -->
+  <section class="hk-page-hero">
+    <div>
+      <div class="hk-page-eyebrow">iPad Wall Mounts &amp; Stands</div>
+      <h1>Conference Room<br>Controls.</h1>
+      <p>Create conference room controls, meeting room schedulers, and digital signage with Heckler's iPad Wall Mount Hardware Collection — built for Apple, designed for business.</p>
+      <a href="#wall-mounts" class="hk-cta-pill">See All Mounts</a>
+    </div>
+    <div class="hk-page-hero-img">
+      <img src="https://heckler.com/cdn/shop/files/H782herorender21x1.jpg?v=1770761479&width=1200"
+           alt="Heckler iPad Wall Mount in conference room">
+    </div>
+  </section>
+
+  <!-- Feature row -->
+  <div class="hk-feat-row">
+    <div class="hk-feat-item">
+      <div class="hk-feat-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div>
+      <div class="hk-feat-text"><h4>Built for Apple</h4><p>iPad mini to iPad Pro.</p></div>
+    </div>
+    <div class="hk-feat-item">
+      <div class="hk-feat-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <div class="hk-feat-text"><h4>Room Schedulers</h4><p>Book rooms from the door.</p></div>
+    </div>
+    <div class="hk-feat-item">
+      <div class="hk-feat-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="hk-feat-text"><h4>Digital Signage</h4><p>Lobby &amp; wayfinding displays.</p></div>
+    </div>
+    <div class="hk-feat-item">
+      <div class="hk-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="hk-feat-text"><h4>Secure Mount</h4><p>Anti-theft hardware included.</p></div>
+    </div>
+  </div>
+
+  <!-- Wall Mounts -->
+  <section class="hk-section hk-section--light" id="wall-mounts">
+    <div class="hk-section-inner">
+      <div class="hk-section-hdr">
+        <div class="hk-section-eyebrow">iPad Wall Mounts</div>
+        <h2>Wall Mounts for Every iPad</h2>
+        <p>From the iPad mini to the iPad 10th Gen — Heckler has a precision wall mount for every model and use case.</p>
+      </div>
+      <div class="hk-product-grid hk-product-grid--4">
+        <a href="https://heckler.com/collections/ipad-stands-mounts" target="_blank" class="hk-card">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/files/H755-BG.MXWallMount10thGen_1x1_2.jpg?v=1698442684&width=360" alt="H755 MX Wall Mount 10th Gen"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H755</div>
+            <div class="hk-card-name">MX Wall Mount — iPad 10th Gen</div>
+            <div class="hk-card-specs">iPad 10th Generation · Secure mount · Power passthrough</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/ipad-stands-mounts" target="_blank" class="hk-card">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/files/H658.OnWallMountiPadmini_1x1_2.jpg?v=1698443109&width=360" alt="H658 On-Wall Mount iPad Mini"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H658</div>
+            <div class="hk-card-name">On-Wall Mount — iPad Mini</div>
+            <div class="hk-card-specs">iPad Mini · Flush wall mount · Clean installation</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/ipad-stands-mounts" target="_blank" class="hk-card">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/files/H604-BG.SideMount_1x1_6.jpg?v=1698443242&width=360" alt="H604 Side Mount"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H604</div>
+            <div class="hk-card-name">Side Mount</div>
+            <div class="hk-card-specs">Side-entry wall mount · Adjustable angle · Multiple iPad sizes</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/ipad-stands-mounts" target="_blank" class="hk-card">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/products/H609-BG-Front-Mount-iPad-7thGen-07.jpg?v=1611525316&width=360" alt="H609 Front Mount"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H609</div>
+            <div class="hk-card-name">Front Mount</div>
+            <div class="hk-card-specs">Front-loading mount · iPad 7th Gen · Secure locking</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Room Schedulers -->
+  <section class="hk-section hk-section--dark" id="room-schedulers">
+    <div class="hk-section-inner">
+      <div class="hk-section-hdr">
+        <div class="hk-section-eyebrow">Room Schedulers</div>
+        <h2>Book Rooms from the Door.</h2>
+        <p>Heckler room scheduler mounts transform any iPad into a professional room booking display — clean, secure, and always powered.</p>
+      </div>
+      <div class="hk-product-grid hk-product-grid--3">
+        <a href="https://heckler.com/collections/ipad-stands-mounts" target="_blank" class="hk-card hk-card--dark">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/files/H659-BG.RoomSchedulerMountiPadMini6thGen_1x1_7.jpg?v=1697035778&width=360" alt="H659 Room Scheduler Mount iPad Mini"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H659</div>
+            <div class="hk-card-name">Room Scheduler Mount — iPad Mini 6th Gen</div>
+            <div class="hk-card-specs">iPad Mini 6th Gen · Room scheduling · Powered mount · Anti-theft</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/ipad-stands-mounts" target="_blank" class="hk-card hk-card--dark">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/files/H753-BG.RoomScheduler_1x1_5_8b06cd36-2f75-44db-aa85-a6ea3e0234ba.jpg?v=1697665974&width=360" alt="H753 Room Scheduler"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H753</div>
+            <div class="hk-card-name">Room Scheduler Mount</div>
+            <div class="hk-card-specs">Enterprise room scheduling · Multiple iPad sizes · Always-on power</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/ipad-stands-mounts" target="_blank" class="hk-card hk-card--dark">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/products/H757-BG_1x1_bed51d8b-b5d8-4dc5-844b-86cc9fa79925.jpg?v=1673646330&width=360" alt="H757 Mount"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H757</div>
+            <div class="hk-card-name">H757 iPad Mount</div>
+            <div class="hk-card-specs">Conference room and scheduling use · Secure · Powered</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital Signage + H782 -->
+  <section class="hk-section hk-section--alt" id="digital-signage">
+    <div class="hk-section-inner">
+      <div class="hk-section-hdr">
+        <div class="hk-section-eyebrow">Digital Signage &amp; Tripod Mounts</div>
+        <h2>Lobby, Wayfinding &amp; More.</h2>
+        <p>Transform any iPad into a dynamic digital sign — lobby kiosks, wayfinding, product displays, and event check-in.</p>
+      </div>
+      <div class="hk-product-grid hk-product-grid--3">
+        <a href="https://heckler.com/collections/ipad-stands-mounts" target="_blank" class="hk-card">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/files/H782herorender21x1.jpg?v=1770761479&width=535" alt="H782 iPad Mount"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H782</div>
+            <div class="hk-card-name">Heckler H782 Mount</div>
+            <div class="hk-card-specs">Large format iPad mount · Lobby kiosk · Digital signage</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/ipad-stands-mounts" target="_blank" class="hk-card">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/products/TripodMountcollectionimage.jpg?v=1661954146&width=360" alt="Tripod Mount"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">Tripod</div>
+            <div class="hk-card-name">Tripod Mount</div>
+            <div class="hk-card-specs">Floor-standing tripod mount · Events &amp; trade shows · Portable</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/ipad-stands-mounts" target="_blank" class="hk-card">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/products/H756_OnWallMount_1x1_29c0fe8c-df80-4465-bfea-a47d9fc9da0d.jpg?v=1672782015&width=360" alt="H756 On-Wall Mount"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H756</div>
+            <div class="hk-card-name">On-Wall Mount H756</div>
+            <div class="hk-card-specs">Clean on-wall installation · Power included · Secure</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="hk-banner">
+    <div class="eyebrow">Built for Apple, Designed for Business</div>
+    <h2>The Right Mount<br>for Every Room.</h2>
+    <p>Room schedulers, wall mounts, and digital signage solutions — Heckler has the hardware for every iPad and every use case.</p>
+    <div class="hk-banner-btns">
+      <a href="https://heckler.com/collections/ipad-stands-mounts" target="_blank" class="primary">Shop All iPad Mounts</a>
+      <a href="index.html" class="outline">Back to Store</a>
+    </div>
+  </div>
+
+  </div>
+  <div id="site-footer"></div>
+  <script src="main.js"></script>
+</body>
+</html>

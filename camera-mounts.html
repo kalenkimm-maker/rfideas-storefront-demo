@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heckler | Camera Mounts — Video Meeting Camera Accessories</title>
+  <link rel="stylesheet" href="styles_v2.css">
+  <style>
+    .hk-page-hero {
+      background: #1A1B18; color: #fff;
+      padding: clamp(48px, 7vw, 88px) clamp(24px, 5vw, 72px);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 40px; align-items: center;
+    }
+    .hk-page-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #0EBBFF; margin-bottom: 14px; }
+    .hk-page-hero h1 { font-size: clamp(32px, 4.5vw, 58px); font-weight: 900; line-height: 1.05; margin: 0 0 16px; }
+    .hk-page-hero p { font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.65; margin: 0 0 28px; max-width: 480px; }
+    .hk-page-hero-img img { width: 100%; height: clamp(280px, 35vw, 460px); object-fit: contain; }
+    .hk-cta-pill { display: inline-flex; align-items: center; gap: 8px; background: #0EBBFF; color: #1A1B18; border-radius: 999px; padding: 12px 24px; font-size: 0.87rem; font-weight: 700; text-decoration: none; transition: opacity .2s; }
+    .hk-cta-pill:hover { opacity: .85; }
+
+    .hk-feat-row { background: #22231F; display: flex; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .hk-feat-item { flex: 1; display: flex; align-items: center; gap: 14px; padding: 22px 28px; border-right: 1px solid rgba(255,255,255,0.06); }
+    .hk-feat-item:last-child { border-right: none; }
+    .hk-feat-icon { width: 40px; height: 40px; flex-shrink: 0; background: rgba(14,187,255,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .hk-feat-icon svg { width: 20px; height: 20px; stroke: #0EBBFF; fill: none; stroke-width: 2; }
+    .hk-feat-text h4 { font-size: 0.85rem; font-weight: 700; color: #fff; margin: 0 0 2px; }
+    .hk-feat-text p { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin: 0; }
+
+    .hk-section { padding: clamp(48px, 6vw, 80px) clamp(20px, 4vw, 60px); }
+    .hk-section--dark { background: #1A1B18; }
+    .hk-section--mid { background: #22231F; }
+    .hk-section--light { background: #fff; }
+    .hk-section--alt { background: #f5f7fa; }
+    .hk-section-inner { max-width: 1200px; margin: 0 auto; }
+    .hk-section-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #0EBBFF; margin-bottom: 8px; }
+    .hk-section-hdr { margin-bottom: 40px; }
+    .hk-section-hdr h2 { font-size: clamp(24px, 3vw, 38px); font-weight: 900; line-height: 1.1; margin-bottom: 10px; }
+    .hk-section--dark .hk-section-hdr h2,
+    .hk-section--mid .hk-section-hdr h2 { color: #fff; }
+    .hk-section-hdr p { font-size: 0.95rem; line-height: 1.6; max-width: 600px; }
+    .hk-section--dark .hk-section-hdr p,
+    .hk-section--mid .hk-section-hdr p { color: rgba(255,255,255,0.6); }
+
+    .hk-product-grid { display: grid; gap: 20px; }
+    .hk-product-grid--4 { grid-template-columns: repeat(4, 1fr); }
+    .hk-product-grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .hk-product-grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+    .hk-card { border-radius: 16px; overflow: hidden; background: #fff; border: 1px solid #e8eaed; text-decoration: none; color: #1A1B18; display: flex; flex-direction: column; position: relative; transition: box-shadow .2s, transform .2s; }
+    .hk-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.12); transform: translateY(-2px); }
+    .hk-card--dark { background: #22231F; color: #fff; border: none; }
+    .hk-card-img { height: 210px; background: #f5f7fa; display: flex; align-items: center; justify-content: center; }
+    .hk-card--dark .hk-card-img { background: #2d2e2a; }
+    .hk-card-img img { width: 100%; height: 100%; object-fit: contain; padding: 16px; }
+    .hk-card-body { padding: 14px 14px 48px; flex: 1; }
+    .hk-card-model { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0EBBFF; margin-bottom: 4px; }
+    .hk-card-name { font-size: 0.87rem; font-weight: 700; line-height: 1.3; margin-bottom: 5px; }
+    .hk-card-specs { font-size: 0.76rem; color: #666; line-height: 1.45; }
+    .hk-card--dark .hk-card-specs { color: rgba(255,255,255,0.5); }
+    .hk-card-buy { position: absolute; bottom: 12px; left: 12px; background: #0EBBFF; color: #1A1B18; border-radius: 999px; padding: 6px 16px; font-size: 0.73rem; font-weight: 700; }
+
+    /* Featured hero tile */
+    .hk-featured-tile {
+      border-radius: 16px; overflow: hidden; display: grid;
+      grid-template-columns: 1.2fr 1fr; background: #1A1B18; margin-bottom: 24px;
+    }
+    .hk-featured-tile-img { min-height: 300px; overflow: hidden; }
+    .hk-featured-tile-img img { width: 100%; height: 100%; object-fit: cover; }
+    .hk-featured-tile-copy { padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; justify-content: center; }
+    .hk-featured-tile-copy .eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #0EBBFF; margin-bottom: 10px; }
+    .hk-featured-tile-copy h3 { font-size: clamp(22px, 2.5vw, 30px); font-weight: 900; color: #fff; margin-bottom: 10px; line-height: 1.2; }
+    .hk-featured-tile-copy p { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.55; margin-bottom: 20px; }
+    .hk-featured-tile-copy a { display: inline-flex; align-items: center; gap: 7px; background: #0EBBFF; color: #1A1B18; border-radius: 999px; padding: 10px 22px; font-size: 0.82rem; font-weight: 700; text-decoration: none; width: fit-content; }
+
+    .hk-banner { background: #1A1B18; padding: clamp(48px, 6vw, 72px) clamp(24px, 5vw, 60px); text-align: center; }
+    .hk-banner .eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #0EBBFF; margin-bottom: 12px; }
+    .hk-banner h2 { font-size: clamp(26px, 3.5vw, 44px); font-weight: 900; color: #fff; margin-bottom: 14px; }
+    .hk-banner p { font-size: 0.95rem; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto 32px; line-height: 1.6; }
+    .hk-banner-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hk-banner-btns a { border-radius: 999px; padding: 13px 28px; font-size: 0.88rem; font-weight: 700; text-decoration: none; }
+    .hk-banner-btns .primary { background: #0EBBFF; color: #1A1B18; }
+    .hk-banner-btns .outline { border: 2px solid rgba(255,255,255,0.28); color: #fff; }
+
+    @media (max-width: 860px) {
+      .hk-page-hero { grid-template-columns: 1fr; }
+      .hk-page-hero-img { display: none; }
+      .hk-featured-tile { grid-template-columns: 1fr; }
+      .hk-featured-tile-img { min-height: 220px; }
+      .hk-product-grid--4 { grid-template-columns: repeat(2, 1fr); }
+      .hk-product-grid--3 { grid-template-columns: repeat(2, 1fr); }
+      .hk-feat-row { flex-wrap: wrap; }
+    }
+    @media (max-width: 540px) {
+      .hk-product-grid--4, .hk-product-grid--3, .hk-product-grid--2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div class="brand-store-wrap">
+
+  <div class="breadcrumb" style="padding:10px clamp(20px,4vw,60px); background:#f3f3f3; font-size:0.78rem; color:#555;">
+    <a href="index.html" style="color:#0099CC;">Heckler</a> › Camera Mounts
+  </div>
+
+  <section class="hk-page-hero">
+    <div>
+      <div class="hk-page-eyebrow">Video Meeting Camera Mounts &amp; Accessories</div>
+      <h1>Every Room,<br>Camera Ready.</h1>
+      <p>Heckler camera mounts and accessories make every meeting room look and perform like a professional video studio — from Logitech Scribe whiteboard mounts to tabletop and wall solutions.</p>
+      <a href="#camera-mounts-grid" class="hk-cta-pill">Shop Camera Mounts</a>
+    </div>
+    <div class="hk-page-hero-img">
+      <img src="https://heckler.com/cdn/shop/files/H872-WT._Whiteboard_Mount_Logitech_Scribe_Header_Full_2x1_1.jpg?v=1692388521&width=1200"
+           alt="Heckler Whiteboard Mount Logitech Scribe">
+    </div>
+  </section>
+
+  <div class="hk-feat-row">
+    <div class="hk-feat-item">
+      <div class="hk-feat-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+      <div class="hk-feat-text"><h4>Video-First Design</h4><p>Engineered for video rooms.</p></div>
+    </div>
+    <div class="hk-feat-item">
+      <div class="hk-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="hk-feat-text"><h4>Secure Mount</h4><p>Built to stay put.</p></div>
+    </div>
+    <div class="hk-feat-item">
+      <div class="hk-feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+      <div class="hk-feat-text"><h4>Works with Leading Cameras</h4><p>Logitech, Bose, &amp; more.</p></div>
+    </div>
+    <div class="hk-feat-item">
+      <div class="hk-feat-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+      <div class="hk-feat-text"><h4>Custom Covers</h4><p>Textile &amp; UV print options.</p></div>
+    </div>
+  </div>
+
+  <!-- Featured: H872 Logitech Scribe -->
+  <section class="hk-section hk-section--mid">
+    <div class="hk-section-inner">
+      <div class="hk-featured-tile">
+        <div class="hk-featured-tile-img">
+          <img src="https://heckler.com/cdn/shop/files/H872-WT._Whiteboard_Mount_Logitech_Scribe_Header_Full_2x1_1.jpg?v=1692388521&width=1200"
+               alt="H872 Whiteboard Mount for Logitech Scribe">
+        </div>
+        <div class="hk-featured-tile-copy">
+          <div class="eyebrow">Featured</div>
+          <h3>Whiteboard Mount for Logitech Scribe</h3>
+          <p>A precision mount purpose-built for the Logitech Scribe whiteboard camera — clean installation, perfect angle, no visible wires.</p>
+          <a href="https://heckler.com/collections/camera-mounts" target="_blank">Shop H872</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Camera Mounts Grid -->
+  <section class="hk-section hk-section--dark" id="camera-mounts-grid">
+    <div class="hk-section-inner">
+      <div class="hk-section-hdr">
+        <div class="hk-section-eyebrow">Camera Mounts</div>
+        <h2>Mounts for Every Camera &amp; Room</h2>
+        <p>Wall mounts, tabletop stands, and ceiling solutions — Heckler makes every camera placement look intentional.</p>
+      </div>
+      <div class="hk-product-grid hk-product-grid--4">
+        <a href="https://heckler.com/collections/camera-mounts" target="_blank" class="hk-card hk-card--dark">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/files/H872-WT.WhiteboardMountLogitechScribe_Header_1x1_1.jpg?v=1692388390&width=360" alt="H872 Whiteboard Mount"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H872</div>
+            <div class="hk-card-name">Whiteboard Mount — Logitech Scribe</div>
+            <div class="hk-card-specs">Logitech Scribe · Whiteboard · Clean install</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/camera-mounts" target="_blank" class="hk-card hk-card--dark">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/files/H59716.jpg?v=1769551513&width=360" alt="H597 Camera Mount"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H597</div>
+            <div class="hk-card-name">Camera Mount H597</div>
+            <div class="hk-card-specs">Huddle rooms · Video conferencing · Adjustable</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/camera-mounts" target="_blank" class="hk-card hk-card--dark">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/products/H5981x1ratio.jpg?v=1661894392&width=360" alt="H598 Camera Mount"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H598</div>
+            <div class="hk-card-name">Eyeline Camera Mount H598</div>
+            <div class="hk-card-specs">Monitor-top mount · Eye-level positioning · Clean look</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/camera-mounts" target="_blank" class="hk-card hk-card--dark">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/products/H5991X1ratio.jpg?v=1661894721&width=360" alt="H599 Camera Mount"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H599</div>
+            <div class="hk-card-name">Camera Mount H599</div>
+            <div class="hk-card-specs">Monitor-top mount · Dual camera compatible</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/camera-mounts" target="_blank" class="hk-card hk-card--dark">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/products/H6251x1ratio.jpg?v=1661896145&width=360" alt="H625 Camera Mount"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H625</div>
+            <div class="hk-card-name">Camera Mount H625</div>
+            <div class="hk-card-specs">Wall mount · Conference rooms · Cable passthrough</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/camera-mounts" target="_blank" class="hk-card hk-card--dark">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/products/H6151x1ratio.jpg?v=1661895012&width=360" alt="H615 Camera Mount"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">H615</div>
+            <div class="hk-card-name">Camera Mount H615</div>
+            <div class="hk-card-specs">Universal mount · Multiple camera brands · Adjustable angle</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/camera-mounts" target="_blank" class="hk-card hk-card--dark">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/files/T501.HecklerTripodHead_1x1_1.jpg?v=1697132213&width=360" alt="T501 Tripod Head"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">T501</div>
+            <div class="hk-card-name">Heckler Tripod Head</div>
+            <div class="hk-card-specs">Pro tripod head · Video conferencing · Pan &amp; tilt</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="https://heckler.com/collections/camera-mounts" target="_blank" class="hk-card hk-card--dark">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/files/001_90f93a85-ac76-4698-a49e-8eabfcfd0495.jpg?v=1768928892&width=360" alt="Camera Accessory"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">Accessory</div>
+            <div class="hk-card-name">Camera Adapter</div>
+            <div class="hk-card-specs">Universal camera adapter · Multiple mount types</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Covers -->
+  <section class="hk-section hk-section--alt">
+    <div class="hk-section-inner">
+      <div class="hk-section-hdr">
+        <div class="hk-section-eyebrow">Custom Covers</div>
+        <h2>Match Your Brand.</h2>
+        <p>Textile and UV-print custom covers let you brand your Heckler camera mounts to match your company identity or conference room aesthetic.</p>
+      </div>
+      <div class="hk-product-grid hk-product-grid--2">
+        <a href="https://heckler.com/collections/camera-mounts" target="_blank" class="hk-card">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/files/10-06_Textile_cover-2_square_349c2cf2-5e5e-4f80-9a8c-0301855db60e.png?v=1707238168&width=360" alt="Textile Custom Cover"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">Custom Cover</div>
+            <div class="hk-card-name">Textile Custom Cover</div>
+            <div class="hk-card-specs">Premium textile material · Custom logo &amp; colors · Professional finish</div>
+          </div>
+          <span class="hk-card-buy">See Options</span>
+        </a>
+        <a href="https://heckler.com/collections/camera-mounts" target="_blank" class="hk-card">
+          <div class="hk-card-img"><img src="https://heckler.com/cdn/shop/files/10-06_UV_Print_cover-3-square_555cbef5-eed6-4360-9114-7e765b9354b6.png?v=1707238237&width=360" alt="UV Print Custom Cover"></div>
+          <div class="hk-card-body">
+            <div class="hk-card-model">Custom Cover</div>
+            <div class="hk-card-name">UV Print Custom Cover</div>
+            <div class="hk-card-specs">UV-printed · Photographic quality · Full-color branding</div>
+          </div>
+          <span class="hk-card-buy">See Options</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="hk-banner">
+    <div class="eyebrow">Professional Video Meeting Rooms</div>
+    <h2>Every Camera.<br>Every Room.</h2>
+    <p>Heckler camera mounts work with Logitech, Bose, and all leading video conferencing cameras. Purpose-built for professional meeting spaces.</p>
+    <div class="hk-banner-btns">
+      <a href="https://heckler.com/collections/camera-mounts" target="_blank" class="primary">Shop All Camera Mounts</a>
+      <a href="index.html" class="outline">Back to Store</a>
+    </div>
+  </div>
+
+  </div>
+  <div id="site-footer"></div>
+  <script src="main.js"></script>
+</body>
+</html>

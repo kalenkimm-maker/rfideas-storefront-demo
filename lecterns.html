@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heckler | AV Lecterns — Reimagined for Modern Learning</title>
+  <link rel="stylesheet" href="styles_v2.css">
+  <style>
+    .hk-hero-dark {
+      background: #1A1B18; color: #fff;
+      padding: clamp(56px, 8vw, 96px) clamp(24px, 5vw, 72px);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: center;
+    }
+    .hk-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #0EBBFF; margin-bottom: 14px; }
+    .hk-hero-dark h1 { font-size: clamp(32px, 4.5vw, 58px); font-weight: 900; line-height: 1.05; margin: 0 0 16px; }
+    .hk-hero-dark p { font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.65; margin: 0 0 28px; max-width: 480px; }
+    .hk-hero-img img { width: 100%; height: clamp(300px, 36vw, 480px); object-fit: cover; border-radius: 16px; }
+    .hk-cta-pill { display: inline-flex; align-items: center; gap: 8px; background: #0EBBFF; color: #1A1B18; border-radius: 999px; padding: 13px 26px; font-size: 0.88rem; font-weight: 700; text-decoration: none; transition: opacity .2s; }
+    .hk-cta-pill:hover { opacity: .85; }
+    .hk-cta-outline { display: inline-flex; align-items: center; gap: 8px; border: 2px solid rgba(255,255,255,0.3); color: #fff; border-radius: 999px; padding: 11px 24px; font-size: 0.87rem; font-weight: 700; text-decoration: none; transition: border-color .2s; }
+    .hk-cta-outline:hover { border-color: #0EBBFF; }
+
+    /* Key message */
+    .hk-reimagined {
+      background: #f5f7fa;
+      padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 60px);
+      text-align: center;
+    }
+    .hk-reimagined-inner { max-width: 760px; margin: 0 auto; }
+    .hk-reimagined h2 { font-size: clamp(26px, 3.5vw, 44px); font-weight: 900; color: #1A1B18; margin-bottom: 16px; }
+    .hk-reimagined p { font-size: 1rem; color: #555; line-height: 1.7; margin-bottom: 0; }
+
+    /* Benefits row */
+    .hk-benefits {
+      background: #1A1B18;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    .hk-benefit {
+      padding: clamp(28px, 4vw, 48px) clamp(24px, 3vw, 36px);
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .hk-benefit:last-child { border-right: none; }
+    .hk-benefit-icon { width: 44px; height: 44px; background: rgba(14,187,255,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .hk-benefit-icon svg { width: 22px; height: 22px; stroke: #0EBBFF; fill: none; stroke-width: 2; }
+    .hk-benefit h4 { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .hk-benefit p { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.55; margin: 0; }
+
+    /* Product lineup */
+    .hk-lineup { padding: clamp(48px, 6vw, 80px) clamp(20px, 4vw, 60px); background: #fff; }
+    .hk-lineup-inner { max-width: 1100px; margin: 0 auto; }
+    .hk-lineup-hdr { margin-bottom: 40px; }
+    .hk-lineup-hdr h2 { font-size: clamp(24px, 3vw, 38px); font-weight: 900; color: #1A1B18; margin-bottom: 10px; }
+    .hk-lineup-hdr p { font-size: 0.95rem; color: #666; line-height: 1.6; max-width: 580px; }
+
+    .hk-lectern-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .hk-lectern-card {
+      border-radius: 16px; overflow: hidden; border: 1px solid #e8eaed;
+      text-decoration: none; color: #1A1B18; display: flex; flex-direction: column;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .hk-lectern-card:hover { box-shadow: 0 10px 36px rgba(0,0,0,0.1); transform: translateY(-3px); }
+    .hk-lectern-img { height: 260px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .hk-lectern-img img { width: 100%; height: 100%; object-fit: contain; padding: 20px; }
+    .hk-lectern-body { padding: 20px 20px 54px; flex: 1; position: relative; }
+    .hk-lectern-model { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0EBBFF; margin-bottom: 5px; }
+    .hk-lectern-name { font-size: 1rem; font-weight: 800; margin-bottom: 8px; }
+    .hk-lectern-desc { font-size: 0.83rem; color: #666; line-height: 1.55; margin-bottom: 14px; }
+    .hk-lectern-specs { display: flex; flex-direction: column; gap: 4px; }
+    .hk-lectern-specs span { font-size: 0.76rem; color: #555; display: flex; align-items: center; gap: 6px; }
+    .hk-lectern-specs span::before { content: '✓'; color: #0EBBFF; font-weight: 700; }
+    .hk-lectern-cta { position: absolute; bottom: 16px; left: 16px; background: #0EBBFF; color: #1A1B18; border-radius: 999px; padding: 8px 20px; font-size: 0.78rem; font-weight: 700; }
+
+    /* Use case section */
+    .hk-use-cases { padding: clamp(48px, 6vw, 80px) clamp(20px, 4vw, 60px); background: #f5f7fa; }
+    .hk-use-cases-inner { max-width: 1100px; margin: 0 auto; }
+    .hk-use-hdr { text-align: center; margin-bottom: 40px; }
+    .hk-use-hdr h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 900; color: #1A1B18; margin-bottom: 10px; }
+    .hk-use-hdr p { font-size: 0.95rem; color: #666; }
+    .hk-use-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .hk-use-card { background: #1A1B18; border-radius: 16px; padding: 28px; }
+    .hk-use-card-icon { width: 40px; height: 40px; background: rgba(14,187,255,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .hk-use-card-icon svg { width: 20px; height: 20px; stroke: #0EBBFF; fill: none; stroke-width: 2; }
+    .hk-use-card h4 { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .hk-use-card p { font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.55; margin: 0; }
+
+    .hk-banner { background: #1A1B18; padding: clamp(48px, 6vw, 72px) clamp(24px, 5vw, 60px); text-align: center; }
+    .hk-banner .eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #0EBBFF; margin-bottom: 12px; }
+    .hk-banner h2 { font-size: clamp(26px, 3.5vw, 44px); font-weight: 900; color: #fff; margin-bottom: 14px; }
+    .hk-banner p { font-size: 0.95rem; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto 32px; line-height: 1.6; }
+    .hk-banner-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hk-banner-btns a { border-radius: 999px; padding: 13px 28px; font-size: 0.88rem; font-weight: 700; text-decoration: none; }
+    .hk-banner-btns .primary { background: #0EBBFF; color: #1A1B18; }
+    .hk-banner-btns .outline { border: 2px solid rgba(255,255,255,0.28); color: #fff; }
+
+    @media (max-width: 860px) {
+      .hk-hero-dark { grid-template-columns: 1fr; }
+      .hk-hero-img { display: none; }
+      .hk-benefits { grid-template-columns: 1fr; }
+      .hk-benefit { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .hk-lectern-grid, .hk-use-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div class="brand-store-wrap">
+
+  <div class="breadcrumb" style="padding:10px clamp(20px,4vw,60px); background:#f3f3f3; font-size:0.78rem; color:#555;">
+    <a href="index.html" style="color:#0099CC;">Heckler</a> › Lecterns
+  </div>
+
+  <!-- Hero -->
+  <section class="hk-hero-dark">
+    <div>
+      <div class="hk-eyebrow">AV Lecterns</div>
+      <h1>Completely<br>Reimagined.</h1>
+      <p>Heckler Lectern completely reimagines the traditional lectern to provide a significantly improved experience for instructors, AV teams, and learners.</p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="#lectern-lineup" class="hk-cta-pill">See the Lineup</a>
+        <a href="https://heckler.com/collections/lectern" target="_blank" class="hk-cta-outline">Shop Heckler.com</a>
+      </div>
+    </div>
+    <div class="hk-hero-img">
+      <img src="https://heckler.com/cdn/shop/files/Lectern_Instructor_2x1_PS_sharp_corner_06b49634-c081-497b-b56c-217c15d6e074.jpg?v=1721083478&width=1200"
+           alt="Instructor using Heckler Lectern in lecture hall">
+    </div>
+  </section>
+
+  <!-- Key message -->
+  <div class="hk-reimagined">
+    <div class="hk-reimagined-inner">
+      <div class="hk-eyebrow" style="color:#0099CC;">What Makes Heckler Lectern Different</div>
+      <h2>The Lectern Your Instructors<br>Actually Want to Use.</h2>
+      <p>Traditional lecterns are designed for the room, not the instructor. Heckler Lectern flips that — built around how instructors present, how AV teams install, and how learners experience the room. The result is a lectern that works better for everyone.</p>
+    </div>
+  </div>
+
+  <!-- Benefits row -->
+  <div class="hk-benefits">
+    <div class="hk-benefit">
+      <div class="hk-benefit-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <h4>Designed for Instructors</h4>
+      <p>Ergonomic layout puts everything within reach — laptop, controls, notes — so instructors focus on teaching, not fumbling.</p>
+    </div>
+    <div class="hk-benefit">
+      <div class="hk-benefit-icon"><svg viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+      <h4>Simplified for AV Teams</h4>
+      <p>Modular cable management, accessible rack space, and clean routing means faster installs and simpler maintenance for AV teams.</p>
+    </div>
+    <div class="hk-benefit">
+      <div class="hk-benefit-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <h4>Better for Learners</h4>
+      <p>A cleaner, more professional lectern creates a better classroom atmosphere — less clutter, better sight lines, better experience.</p>
+    </div>
+  </div>
+
+  <!-- Product lineup -->
+  <section class="hk-lineup" id="lectern-lineup">
+    <div class="hk-lineup-inner">
+      <div class="hk-lineup-hdr">
+        <div class="hk-eyebrow" style="color:#0099CC;">The Heckler Lectern Lineup</div>
+        <h2>Three Models. Every Room.</h2>
+        <p>From compact conference rooms to large lecture halls — the Heckler Lectern comes in three configurations to fit any AV infrastructure.</p>
+      </div>
+      <div class="hk-lectern-grid">
+        <a href="https://heckler.com/collections/lectern" target="_blank" class="hk-lectern-card">
+          <div class="hk-lectern-img">
+            <img src="https://heckler.com/cdn/shop/files/H920CWhitegalleryrender61x1.jpg?v=1760125520&width=750"
+                 alt="Heckler Lectern">
+          </div>
+          <div class="hk-lectern-body">
+            <div class="hk-lectern-model">Standard</div>
+            <div class="hk-lectern-name">Heckler Lectern</div>
+            <div class="hk-lectern-desc">The flagship Heckler Lectern — reimagined for modern AV. Clean lines, integrated cable management, and an ergonomic workspace.</div>
+            <div class="hk-lectern-specs">
+              <span>Integrated cable management</span>
+              <span>Modular AV rack space</span>
+              <span>Ergonomic instructor surface</span>
+              <span>Durable steel construction</span>
+            </div>
+            <span class="hk-lectern-cta">Learn More</span>
+          </div>
+        </a>
+        <a href="https://heckler.com/collections/lectern" target="_blank" class="hk-lectern-card">
+          <div class="hk-lectern-img">
+            <img src="https://heckler.com/cdn/shop/files/H901LecternBGwithCastleOakModestyPanel1x1sharpcorner.jpg?v=1756413628&width=750"
+                 alt="Heckler Lectern 4U">
+          </div>
+          <div class="hk-lectern-body">
+            <div class="hk-lectern-model">4U Rack</div>
+            <div class="hk-lectern-name">Heckler Lectern 4U</div>
+            <div class="hk-lectern-desc">4U rack space built in — for rooms with more AV gear. Same clean Heckler design, more infrastructure capacity.</div>
+            <div class="hk-lectern-specs">
+              <span>4U rack space</span>
+              <span>Integrated cable management</span>
+              <span>Choice of modesty panel finishes</span>
+              <span>AV installer friendly</span>
+            </div>
+            <span class="hk-lectern-cta">Learn More</span>
+          </div>
+        </a>
+        <a href="https://heckler.com/collections/lectern" target="_blank" class="hk-lectern-card">
+          <div class="hk-lectern-img">
+            <img src="https://heckler.com/cdn/shop/files/Lectern_Instructor_2x1_PS_sharp_corner_06b49634-c081-497b-b56c-217c15d6e074.jpg?v=1721083478&width=750"
+                 alt="Heckler Lectern 6U">
+          </div>
+          <div class="hk-lectern-body">
+            <div class="hk-lectern-model">6U Rack</div>
+            <div class="hk-lectern-name">Heckler Lectern 6U</div>
+            <div class="hk-lectern-desc">Maximum rack capacity for complex lecture hall AV systems. Built for large rooms with demanding infrastructure needs.</div>
+            <div class="hk-lectern-specs">
+              <span>6U rack space</span>
+              <span>Large lecture hall ready</span>
+              <span>Full cable management suite</span>
+              <span>Multiple finish options</span>
+            </div>
+            <span class="hk-lectern-cta">Learn More</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use cases -->
+  <section class="hk-use-cases">
+    <div class="hk-use-cases-inner">
+      <div class="hk-use-hdr">
+        <div class="hk-eyebrow" style="color:#0099CC;">Where Heckler Lecterns Work Best</div>
+        <h2>Built for Every Learning Environment</h2>
+        <p>Classrooms, boardrooms, training centers, and more.</p>
+      </div>
+      <div class="hk-use-grid">
+        <div class="hk-use-card">
+          <div class="hk-use-card-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          <h4>Higher Education</h4>
+          <p>Lecture halls, seminar rooms, and lab classrooms — Heckler Lectern fits any campus AV standard.</p>
+        </div>
+        <div class="hk-use-card">
+          <div class="hk-use-card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <h4>Corporate Training</h4>
+          <p>Training rooms and corporate conference centers demand a professional presenter environment.</p>
+        </div>
+        <div class="hk-use-card">
+          <div class="hk-use-card-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h4>K-12 Schools</h4>
+          <p>Durable construction and clean cable management hold up to the demands of daily classroom use.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hk-banner">
+    <div class="eyebrow">AV Lecterns</div>
+    <h2>The Lectern Your<br>Instructors Deserve.</h2>
+    <p>Three models for every room size. Built for instructors, AV teams, and learners. Available now on Heckler.com.</p>
+    <div class="hk-banner-btns">
+      <a href="https://heckler.com/collections/lectern" target="_blank" class="primary">Shop Heckler Lecterns</a>
+      <a href="index.html" class="outline">Back to Store</a>
+    </div>
+  </div>
+
+  </div>
+  <div id="site-footer"></div>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heckler | AV Wall — Configure Your Perfect Meeting Wall</title>
+  <link rel="stylesheet" href="styles_v2.css">
+  <style>
+    .hk-hero-wall {
+      position: relative; min-height: 520px; overflow: hidden;
+      display: flex; align-items: flex-end;
+    }
+    .hk-hero-wall-bg {
+      position: absolute; inset: 0;
+    }
+    .hk-hero-wall-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .hk-hero-wall-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(26,27,24,0.9) 45%, rgba(26,27,24,0.3));
+    }
+    .hk-hero-wall-copy {
+      position: relative; z-index: 1;
+      padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 72px);
+      max-width: 600px;
+    }
+    .hk-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #0EBBFF; margin-bottom: 14px; }
+    .hk-hero-wall-copy h1 { font-size: clamp(32px, 4.5vw, 58px); font-weight: 900; line-height: 1.05; color: #fff; margin: 0 0 16px; }
+    .hk-hero-wall-copy p { font-size: 1rem; color: rgba(255,255,255,0.75); line-height: 1.65; margin: 0 0 28px; max-width: 440px; }
+    .hk-cta-pill { display: inline-flex; align-items: center; gap: 8px; background: #0EBBFF; color: #1A1B18; border-radius: 999px; padding: 13px 26px; font-size: 0.88rem; font-weight: 700; text-decoration: none; transition: opacity .2s; }
+    .hk-cta-pill:hover { opacity: .85; }
+    .hk-cta-outline { display: inline-flex; align-items: center; gap: 8px; border: 2px solid rgba(255,255,255,0.3); color: #fff; border-radius: 999px; padding: 11px 24px; font-size: 0.87rem; font-weight: 700; text-decoration: none; transition: border-color .2s; }
+    .hk-cta-outline:hover { border-color: #0EBBFF; }
+
+    /* Concept section */
+    .hk-concept {
+      background: #f5f7fa;
+      padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 60px);
+    }
+    .hk-concept-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hk-concept-copy h2 { font-size: clamp(26px, 3.5vw, 42px); font-weight: 900; color: #1A1B18; margin-bottom: 16px; line-height: 1.1; }
+    .hk-concept-copy p { font-size: 0.95rem; color: #555; line-height: 1.7; margin-bottom: 14px; }
+    .hk-concept-copy p:last-of-type { margin-bottom: 24px; }
+    .hk-concept-img img { width: 100%; height: clamp(280px, 30vw, 400px); object-fit: cover; border-radius: 16px; }
+
+    /* How it works */
+    .hk-how { background: #1A1B18; padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 60px); }
+    .hk-how-inner { max-width: 1100px; margin: 0 auto; }
+    .hk-how-hdr { text-align: center; margin-bottom: 48px; }
+    .hk-how-hdr h2 { font-size: clamp(24px, 3vw, 38px); font-weight: 900; color: #fff; margin-bottom: 10px; }
+    .hk-how-hdr p { font-size: 0.95rem; color: rgba(255,255,255,0.6); }
+    .hk-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .hk-step { text-align: center; }
+    .hk-step-num {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: #0EBBFF; color: #1A1B18;
+      font-size: 1.2rem; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+    }
+    .hk-step h4 { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .hk-step p { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.5; margin: 0; }
+
+    /* Configuration options */
+    .hk-config { padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 60px); background: #fff; }
+    .hk-config-inner { max-width: 1100px; margin: 0 auto; }
+    .hk-config-hdr { margin-bottom: 40px; }
+    .hk-config-hdr h2 { font-size: clamp(24px, 3vw, 38px); font-weight: 900; color: #1A1B18; margin-bottom: 10px; }
+    .hk-config-hdr p { font-size: 0.95rem; color: #666; line-height: 1.6; max-width: 580px; }
+    .hk-config-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .hk-config-card { border-radius: 16px; border: 1px solid #e8eaed; padding: 24px; }
+    .hk-config-card h4 { font-size: 0.9rem; font-weight: 700; color: #1A1B18; margin-bottom: 8px; }
+    .hk-config-card p { font-size: 0.82rem; color: #666; line-height: 1.55; margin: 0; }
+    .hk-config-card .icon { width: 38px; height: 38px; background: rgba(14,187,255,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+    .hk-config-card .icon svg { width: 18px; height: 18px; stroke: #0099CC; fill: none; stroke-width: 2; }
+
+    /* Color options */
+    .hk-colors { background: #f5f7fa; padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 60px); }
+    .hk-colors-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .hk-colors h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 900; color: #1A1B18; margin-bottom: 10px; }
+    .hk-colors > div > p { font-size: 0.95rem; color: #666; margin-bottom: 36px; }
+    .hk-color-swatches { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .hk-swatch { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .hk-swatch-circle { width: 64px; height: 64px; border-radius: 50%; border: 3px solid #e8eaed; transition: transform .2s; }
+    .hk-swatch-circle:hover { transform: scale(1.08); }
+    .hk-swatch-label { font-size: 0.78rem; font-weight: 600; color: #555; }
+
+    /* Gallery */
+    .hk-gallery { padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 60px); background: #1A1B18; }
+    .hk-gallery-inner { max-width: 1100px; margin: 0 auto; }
+    .hk-gallery-hdr { text-align: center; margin-bottom: 36px; }
+    .hk-gallery-hdr h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 900; color: #fff; margin-bottom: 8px; }
+    .hk-gallery-hdr p { font-size: 0.95rem; color: rgba(255,255,255,0.6); }
+    .hk-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .hk-gallery-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; }
+
+    .hk-banner { background: #0EBBFF; padding: clamp(48px, 6vw, 72px) clamp(24px, 5vw, 60px); text-align: center; }
+    .hk-banner .eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(26,27,24,0.6); margin-bottom: 12px; }
+    .hk-banner h2 { font-size: clamp(26px, 3.5vw, 44px); font-weight: 900; color: #1A1B18; margin-bottom: 14px; }
+    .hk-banner p { font-size: 0.95rem; color: rgba(26,27,24,0.7); max-width: 520px; margin: 0 auto 32px; line-height: 1.6; }
+    .hk-banner-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hk-banner-btns a { border-radius: 999px; padding: 13px 28px; font-size: 0.88rem; font-weight: 700; text-decoration: none; }
+    .hk-banner-btns .primary { background: #1A1B18; color: #fff; }
+    .hk-banner-btns .outline { border: 2px solid rgba(26,27,24,0.3); color: #1A1B18; }
+
+    @media (max-width: 860px) {
+      .hk-concept-inner { grid-template-columns: 1fr; }
+      .hk-concept-img { display: none; }
+      .hk-steps { grid-template-columns: repeat(2, 1fr); }
+      .hk-config-grid { grid-template-columns: 1fr 1fr; }
+      .hk-gallery-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 540px) {
+      .hk-steps, .hk-config-grid, .hk-gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div class="brand-store-wrap">
+
+  <div class="breadcrumb" style="padding:10px clamp(20px,4vw,60px); background:#f3f3f3; font-size:0.78rem; color:#555;">
+    <a href="index.html" style="color:#0099CC;">Heckler</a> › AV Walls
+  </div>
+
+  <!-- Hero -->
+  <section class="hk-hero-wall">
+    <div class="hk-hero-wall-bg">
+      <img src="https://heckler.com/cdn/shop/files/AVWallDualdisplayheroonebluewithpeople_354d90f3-eb04-45a2-a828-478dff82d81e.jpg?v=1663175128&width=1780"
+           alt="Heckler AV Wall dual display in conference room">
+    </div>
+    <div class="hk-hero-wall-overlay"></div>
+    <div class="hk-hero-wall-copy">
+      <div class="hk-eyebrow">Heckler AV Wall</div>
+      <h1>Your Perfect<br>Meeting Wall.</h1>
+      <p>Configure impressive video meeting walls for each room in your office — and install without the added expense of contractors.</p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="https://heckler.com/collections/heckler-av-wall" target="_blank" class="hk-cta-pill">Configure Yours</a>
+        <a href="#how-it-works" class="hk-cta-outline">How It Works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Concept -->
+  <section class="hk-concept">
+    <div class="hk-concept-inner">
+      <div class="hk-concept-copy">
+        <div class="hk-eyebrow" style="color:#0099CC;">What Is Heckler AV Wall?</div>
+        <h2>A Meeting Wall You<br>Actually Configure.</h2>
+        <p>The Heckler AV Wall is a fully configurable display wall system — you choose the structure, the number of displays, the size, the storage, and the color. Then add it to your cart and install it yourself.</p>
+        <p>No custom fabrication wait times. No contractor crews. No surprise costs. Just a professional, purpose-built meeting wall that ships to your door ready to assemble.</p>
+        <a href="https://heckler.com/collections/heckler-av-wall" target="_blank" class="hk-cta-pill">Start Configuring</a>
+      </div>
+      <div class="hk-concept-img">
+        <img src="https://heckler.com/cdn/shop/products/AVWallDualdisplay1x1withpeople.jpg?v=1663193156&width=750"
+             alt="Heckler AV Wall dual display meeting room">
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="hk-how" id="how-it-works">
+    <div class="hk-how-inner">
+      <div class="hk-how-hdr">
+        <div class="hk-eyebrow">Simple Process</div>
+        <h2>Configure. Order. Install.</h2>
+        <p>Four steps from decision to done.</p>
+      </div>
+      <div class="hk-steps">
+        <div class="hk-step">
+          <div class="hk-step-num">1</div>
+          <h4>Choose Your Structure</h4>
+          <p>Select single or dual display, and your preferred display size for each room.</p>
+        </div>
+        <div class="hk-step">
+          <div class="hk-step-num">2</div>
+          <h4>Select Your Options</h4>
+          <p>Pick storage, Video Meeting Hub color, ADA panels, and controller mount.</p>
+        </div>
+        <div class="hk-step">
+          <div class="hk-step-num">3</div>
+          <h4>Choose Your Color</h4>
+          <p>Five finish options to match your office design — from black/gray to honey.</p>
+        </div>
+        <div class="hk-step">
+          <div class="hk-step-num">4</div>
+          <h4>Install Yourself</h4>
+          <p>No contractors needed. Heckler AV Wall is designed for straightforward self-installation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configuration options -->
+  <section class="hk-config">
+    <div class="hk-config-inner">
+      <div class="hk-config-hdr">
+        <div class="hk-eyebrow" style="color:#0099CC;">What You Can Configure</div>
+        <h2>Every Detail. Your Way.</h2>
+        <p>The Heckler AV Wall configurator gives you control over every element of your meeting wall — no compromises.</p>
+      </div>
+      <div class="hk-config-grid">
+        <div class="hk-config-card">
+          <div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <h4>Number of Displays</h4>
+          <p>Single or dual display configuration — match the wall to your room size and meeting format.</p>
+        </div>
+        <div class="hk-config-card">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+          <h4>Display Size</h4>
+          <p>Choose the display size that fits your wall and viewing distance — multiple options available.</p>
+        </div>
+        <div class="hk-config-card">
+          <div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <h4>Storage Options</h4>
+          <p>Add cabinet storage to keep AV equipment, cables, and accessories neatly hidden below.</p>
+        </div>
+        <div class="hk-config-card">
+          <div class="icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+          <h4>Video Meeting Hub</h4>
+          <p>Select your video meeting hub color to complement your wall finish and room design.</p>
+        </div>
+        <div class="hk-config-card">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h4>ADA Panels</h4>
+          <p>Add ADA-compliant panels to ensure your meeting rooms meet accessibility requirements.</p>
+        </div>
+        <div class="hk-config-card">
+          <div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg></div>
+          <h4>Controller Mount</h4>
+          <p>Include a controller mount to keep your room controls organized and easily accessible.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Color options -->
+  <div class="hk-colors">
+    <div class="hk-colors-inner">
+      <div>
+        <div class="hk-eyebrow" style="color:#0099CC;">Five Finish Options</div>
+        <h2>A Color for Every Office.</h2>
+        <p>From clean corporate to warm modern — five finish options to match your space.</p>
+      </div>
+      <div class="hk-color-swatches">
+        <div class="hk-swatch">
+          <div class="hk-swatch-circle" style="background:#2b2b2b;"></div>
+          <span class="hk-swatch-label">Black / Gray</span>
+        </div>
+        <div class="hk-swatch">
+          <div class="hk-swatch-circle" style="background:#f2ede8;"></div>
+          <span class="hk-swatch-label">Off-White</span>
+        </div>
+        <div class="hk-swatch">
+          <div class="hk-swatch-circle" style="background:#4a7c5c;"></div>
+          <span class="hk-swatch-label">Green</span>
+        </div>
+        <div class="hk-swatch">
+          <div class="hk-swatch-circle" style="background:#4a6fa5;"></div>
+          <span class="hk-swatch-label">Blue</span>
+        </div>
+        <div class="hk-swatch">
+          <div class="hk-swatch-circle" style="background:#c8a96e;"></div>
+          <span class="hk-swatch-label">Honey</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery -->
+  <section class="hk-gallery">
+    <div class="hk-gallery-inner">
+      <div class="hk-gallery-hdr">
+        <div class="hk-eyebrow">Gallery</div>
+        <h2>See It in Action.</h2>
+        <p>Heckler AV Wall installed in real office meeting rooms.</p>
+      </div>
+      <div class="hk-gallery-grid">
+        <img src="https://heckler.com/cdn/shop/files/AVWallDualdisplayheroonebluewithpeople_354d90f3-eb04-45a2-a828-478dff82d81e.jpg?v=1663175128&width=750" alt="AV Wall dual display blue">
+        <img src="https://heckler.com/cdn/shop/products/AVWallStructure1x1withpeople.jpg?v=1663177394&width=535" alt="AV Wall structure with people">
+        <img src="https://heckler.com/cdn/shop/products/AVWallDualdisplay1x1withpeople.jpg?v=1663193156&width=535" alt="AV Wall dual display">
+        <img src="https://heckler.com/cdn/shop/files/videomeetingkitforavwall1x1withpeople_65207406-8890-4d08-9931-9384fccf0ee4.jpg?v=1695939230&width=535" alt="Video meeting kit AV Wall">
+        <img src="https://heckler.com/cdn/shop/files/H824.XLDisplayKitAVWall_1x1_2.jpg?v=1693513638&width=535" alt="XL Display Kit AV Wall">
+        <img src="https://heckler.com/cdn/shop/products/h800_complete_3-23-23-_2.jpg?v=1680797494" alt="H800 AV Wall complete">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="hk-banner">
+    <div class="eyebrow">No Contractors Required</div>
+    <h2>Your Perfect Meeting<br>Wall Is Waiting.</h2>
+    <p>Configure it online. Order it. Install it yourself. The Heckler AV Wall is the smarter way to build professional meeting rooms.</p>
+    <div class="hk-banner-btns">
+      <a href="https://heckler.com/collections/heckler-av-wall" target="_blank" class="primary">Configure Your AV Wall</a>
+      <a href="index.html" class="outline">Back to Store</a>
+    </div>
+  </div>
+
+  </div>
+  <div id="site-footer"></div>
+  <script src="main.js"></script>
+</body>
+</html>

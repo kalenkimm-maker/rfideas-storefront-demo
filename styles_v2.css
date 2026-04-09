@@ -1,7 +1,7 @@
 /* ============================================================
-   Inseego Amazon Brand Store — Stylesheet
-   Brand: #1168D6 (primary blue), #080F1E (dark navy), #E8601D (orange CTA)
-   Base: MicroTouch template + Inseego-specific extensions
+   Heckler Amazon Brand Store — Stylesheet
+   Brand: #0EBBFF (cyan), #1A1B18 (near-black), #0099CC (dark cyan)
+   Base: Inseego template + Heckler-specific extensions
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
@@ -9,13 +9,13 @@
 /* 1. CSS Variables
    ============================================================ */
 :root {
-  --primary:      #1168D6;
-  --primary-dark: #0D52B5;
-  --primary-deep: #080F1E;
-  --accent:       #E8601D;
-  --orange:       #E8601D;
-  --navy:         #080F1E;
-  --navy-mid:     #111827;
+  --primary:      #0EBBFF;
+  --primary-dark: #0099CC;
+  --primary-deep: #1A1B18;
+  --accent:       #0EBBFF;
+  --orange:       #0EBBFF;
+  --navy:         #1A1B18;
+  --navy-mid:     #2a2b28;
   --gray:         #78797C;
   --light-gray:   #f5f7fa;
   --light-bg:     #f5f7fa;

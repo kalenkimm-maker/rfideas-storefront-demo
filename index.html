@@ -3,8 +3,456 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>inseego | Amazon Brand Store — 5G Wireless Edge Solutions</title>
+  <title>Heckler | Amazon Brand Store — AV Furniture &amp; Display Stands</title>
   <link rel="stylesheet" href="styles_v2.css">
+  <style>
+    /* ── Heckler-specific homepage overrides ── */
+
+    /* Hero */
+    .heckler-hero {
+      background: #1A1B18;
+      color: #fff;
+      padding: clamp(48px, 7vw, 96px) 0 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .heckler-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 48px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .heckler-hero-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #0EBBFF;
+      margin-bottom: 18px;
+    }
+    .heckler-hero h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 900;
+      line-height: 1.05;
+      margin: 0 0 18px;
+      color: #fff;
+    }
+    .heckler-hero h1 span { color: #0EBBFF; }
+    .heckler-hero-sub {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      color: rgba(255,255,255,0.72);
+      margin: 0 0 32px;
+      max-width: 480px;
+      line-height: 1.6;
+    }
+    .heckler-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+    .heckler-hero-actions .btn-primary {
+      background: #0EBBFF;
+      color: #1A1B18;
+      border-radius: 999px;
+      padding: 14px 28px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .heckler-hero-actions .btn-primary:hover { opacity: .85; }
+    .heckler-hero-actions .btn-outline {
+      border: 2px solid rgba(255,255,255,0.35);
+      color: #fff;
+      border-radius: 999px;
+      padding: 12px 26px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: border-color .2s;
+    }
+    .heckler-hero-actions .btn-outline:hover { border-color: #0EBBFF; }
+
+    /* Feature icon row */
+    .heckler-feat-row {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding: 24px 0 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .heckler-feat-item { display: flex; align-items: center; gap: 10px; }
+    .heckler-feat-icon {
+      width: 36px; height: 36px;
+      background: rgba(14,187,255,0.15);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .heckler-feat-icon svg { width: 18px; height: 18px; stroke: #0EBBFF; fill: none; stroke-width: 2; }
+    .heckler-feat-text { font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.3; }
+
+    /* Hero image */
+    .heckler-hero-visual {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      height: 100%;
+    }
+    .heckler-hero-visual img {
+      width: 100%;
+      max-width: 580px;
+      height: clamp(320px, 40vw, 520px);
+      object-fit: contain;
+      object-position: bottom right;
+    }
+
+    /* Carousel dots */
+    .hero-dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      padding: 20px 0;
+      background: #1A1B18;
+    }
+    .hero-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .hero-dot.active { background: #0EBBFF; width: 24px; border-radius: 4px; }
+
+    /* ── Category split tiles ── */
+    .cat-tile-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .cat-tile-block--flip .ct-copy { order: 2; }
+    .cat-tile-block--flip .ct-visual { order: 1; }
+    .ct-copy {
+      padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 72px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .ct-copy--dark { background: #1A1B18; color: #fff; }
+    .ct-copy--light { background: #f5f7fa; color: #1A1B18; }
+    .ct-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #0EBBFF;
+      margin-bottom: 12px;
+    }
+    .ct-copy--light .ct-eyebrow { color: #0099CC; }
+    .ct-copy h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 0 0 14px;
+    }
+    .ct-copy p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin: 0 0 28px;
+      opacity: .8;
+    }
+    .ct-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0EBBFF;
+      color: #1A1B18;
+      border-radius: 999px;
+      padding: 12px 24px;
+      font-size: 0.87rem;
+      font-weight: 700;
+      text-decoration: none;
+      width: fit-content;
+      transition: opacity .2s;
+    }
+    .ct-cta:hover { opacity: .85; }
+    .ct-cta--outline {
+      background: transparent;
+      border: 2px solid #0EBBFF;
+      color: #0EBBFF;
+    }
+    .ct-cta--outline:hover { background: rgba(14,187,255,0.1); opacity: 1; }
+    .ct-visual {
+      overflow: hidden;
+      position: relative;
+      min-height: 380px;
+    }
+    .ct-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── Product row ── */
+    .hk-product-strip {
+      background: #fff;
+      padding: 40px clamp(20px, 4vw, 60px);
+    }
+    .hk-product-strip--dark { background: #22231F; }
+    .hk-product-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+    }
+    .hk-product-grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .hk-product-grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+    .hk-card {
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #e8eaed;
+      text-decoration: none;
+      color: #1A1B18;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .2s, transform .2s;
+      position: relative;
+    }
+    .hk-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.12); transform: translateY(-2px); }
+    .hk-card--dark {
+      background: #1A1B18;
+      color: #fff;
+      border: none;
+    }
+    .hk-card-img {
+      height: 200px;
+      background: #f5f7fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hk-card--dark .hk-card-img { background: #2a2b28; }
+    .hk-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 12px;
+    }
+    .hk-card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+    .hk-card-model { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0EBBFF; margin-bottom: 4px; }
+    .hk-card-name { font-size: 0.88rem; font-weight: 700; line-height: 1.35; margin-bottom: 6px; }
+    .hk-card-desc { font-size: 0.78rem; color: #666; line-height: 1.45; flex: 1; }
+    .hk-card--dark .hk-card-desc { color: rgba(255,255,255,0.55); }
+    .hk-card-buy {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      background: #0EBBFF;
+      color: #1A1B18;
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* ── Trusted by strip ── */
+    .hk-trusted {
+      background: #fff;
+      padding: 48px clamp(20px, 4vw, 60px);
+      text-align: center;
+      border-top: 1px solid #e8eaed;
+      border-bottom: 1px solid #e8eaed;
+    }
+    .hk-trusted-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 28px;
+    }
+    .hk-trusted-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(24px, 4vw, 56px);
+      flex-wrap: wrap;
+    }
+    .hk-trusted-logos img {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+      opacity: .55;
+      filter: grayscale(100%);
+      transition: opacity .2s;
+    }
+    .hk-trusted-logos img:hover { opacity: .85; }
+
+    /* ── Knowledge page teasers (dark 2-col tiles) ── */
+    .hk-knowledge-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .hk-knowledge-tile {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hk-knowledge-tile img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hk-knowledge-overlay {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(to top, rgba(26,27,24,0.92) 40%, transparent);
+      width: 100%;
+      padding: clamp(24px, 3vw, 40px);
+    }
+    .hk-knowledge-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #0EBBFF;
+      margin-bottom: 8px;
+    }
+    .hk-knowledge-title { font-size: clamp(22px, 2.5vw, 32px); font-weight: 900; color: #fff; margin-bottom: 10px; }
+    .hk-knowledge-desc { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.5; margin-bottom: 20px; max-width: 400px; }
+    .hk-knowledge-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 2px solid rgba(255,255,255,0.4);
+      color: #fff;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: border-color .2s;
+    }
+    .hk-knowledge-cta:hover { border-color: #0EBBFF; color: #0EBBFF; }
+
+    /* ── 4-col category grid ── */
+    .hk-cat-grid-section {
+      background: #f5f7fa;
+      padding: clamp(48px, 6vw, 80px) clamp(20px, 4vw, 60px);
+    }
+    .hk-section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #999;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .hk-section-title {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 900;
+      text-align: center;
+      color: #1A1B18;
+      margin-bottom: clamp(28px, 4vw, 48px);
+    }
+    .hk-cat-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .hk-cat-card {
+      border-radius: 16px;
+      background: #1A1B18;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 16px 20px;
+      gap: 16px;
+      transition: transform .2s;
+      position: relative;
+    }
+    .hk-cat-card:hover { transform: scale(1.02); }
+    .hk-cat-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: contain;
+    }
+    .hk-cat-pill {
+      background: #0EBBFF;
+      color: #1A1B18;
+      border-radius: 999px;
+      padding: 7px 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* ── CTA footer section ── */
+    .hk-cta-section {
+      background: #1A1B18;
+      padding: clamp(56px, 7vw, 96px) clamp(20px, 4vw, 60px);
+      text-align: center;
+    }
+    .hk-cta-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #0EBBFF;
+      margin-bottom: 14px;
+    }
+    .hk-cta-section h2 {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 16px;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hk-cta-section p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 500px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .hk-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hk-cta-btns a {
+      border-radius: 999px;
+      padding: 14px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .hk-cta-btns .primary { background: #0EBBFF; color: #1A1B18; }
+    .hk-cta-btns .outline { border: 2px solid rgba(255,255,255,0.3); color: #fff; }
+    .hk-cta-btns a:hover { opacity: .85; }
+
+    @media (max-width: 900px) {
+      .heckler-hero-inner, .cat-tile-block, .hk-knowledge-row { grid-template-columns: 1fr; }
+      .cat-tile-block--flip .ct-copy { order: 0; }
+      .cat-tile-block--flip .ct-visual { order: 0; }
+      .hk-product-grid--3, .hk-product-grid--4 { grid-template-columns: repeat(2, 1fr); }
+      .hk-cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .heckler-hero-visual { display: none; }
+    }
+    @media (max-width: 560px) {
+      .hk-product-grid--3, .hk-product-grid--4 { grid-template-columns: 1fr; }
+      .hk-cat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
 </head>
 <body>
 
@@ -12,440 +460,328 @@
 
   <div class="brand-store-wrap">
 
-  <!-- ═══ HERO — Full-bleed animated canvas ═══ -->
-  <section class="hero-home">
-    <canvas class="hero-home-canvas"></canvas>
-    <div class="hero-home-inner">
-      <div class="hero-home-copy">
-        <span class="hero-home-eyebrow">5G Wireless Edge · Wi-Fi 7 · FIPS 140-3</span>
-        <h1>Deploy. Connect.<br><span>Unify.</span></h1>
-        <p class="lead">Enterprise 5G hotspots, fixed wireless gateways, and IoT solutions that keep your business connected — on Verizon, AT&T, and T-Mobile networks.</p>
-        <div class="hero-home-actions">
-          <a href="hotspots.html" class="btn btn-primary btn-lg btn-arrow">Shop Hotspots</a>
-          <a href="inseego-connect.html" class="btn btn-outline btn-lg">Inseego Connect</a>
+  <!-- ═══ BREADCRUMB ═══ -->
+  <div class="breadcrumb" style="padding:10px clamp(20px,4vw,60px); background:#f3f3f3; font-size:0.78rem; color:#555;">
+    <a href="#" style="color:#0099CC;">Amazon</a> › <a href="#" style="color:#0099CC;">Brand Stores</a> › Heckler
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="heckler-hero">
+    <div class="heckler-hero-inner">
+      <div class="heckler-hero-copy">
+        <span class="heckler-hero-eyebrow">Mobile Stands · iPad Mounts · Camera Mounts</span>
+        <h1>AV Furniture for the<br><span>Modern Workplace.</span></h1>
+        <p class="heckler-hero-sub">Premium display stands, iPad wall mounts, and video meeting accessories — trusted by the world's most innovative teams. Tool-free setup. Ships free over $99.</p>
+        <div class="heckler-hero-actions">
+          <a href="mobile-stands.html" class="btn-primary">Shop Mobile Stands</a>
+          <a href="ipad-mounts.html" class="btn-outline">iPad Mounts</a>
         </div>
-        <div class="hero-home-trust">
-          <div class="hht-item">
-            <span class="hht-num">1.2M+</span>
-            <span class="hht-label">Devices Managed</span>
+        <div class="heckler-feat-row">
+          <div class="heckler-feat-item">
+            <div class="heckler-feat-icon">
+              <svg viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            </div>
+            <span class="heckler-feat-text">Tool-Free<br>Assembly</span>
           </div>
-          <div class="hht-sep"></div>
-          <div class="hht-item">
-            <span class="hht-num">55+</span>
-            <span class="hht-label">Countries</span>
+          <div class="heckler-feat-item">
+            <div class="heckler-feat-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <span class="heckler-feat-text">2-Minute<br>Setup</span>
           </div>
-          <div class="hht-sep"></div>
-          <div class="hht-item">
-            <span class="hht-num">18%</span>
-            <span class="hht-label">US Hotspot Share</span>
-          </div>
-          <div class="hht-sep"></div>
-          <div class="hht-item">
-            <span class="hht-num">Wi-Fi 7</span>
-            <span class="hht-label">Latest Standard</span>
+          <div class="heckler-feat-item">
+            <div class="heckler-feat-icon">
+              <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <span class="heckler-feat-text">Free Ship<br>Over $99</span>
           </div>
         </div>
       </div>
-      <div class="hero-home-visual">
-        <video class="hero-home-video" autoplay muted loop playsinline>
-          <source src="images/inseego-brand-video.mp4" type="video/mp4">
-        </video>
+      <div class="heckler-hero-visual">
+        <img src="https://heckler.com/cdn/shop/files/Heckler_mobile_fleet_render_2.jpg?v=1738688010&width=1200"
+             alt="Heckler Mobile Fleet rolling display stands in a modern conference room">
       </div>
+    </div>
+    <div class="hero-dots">
+      <div class="hero-dot active"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
     </div>
   </section>
 
-  <!-- ═══ MOBILE HOTSPOTS ═══ -->
-  <section id="hotspots">
-    <div class="cat-split">
-      <div class="cat-split-copy">
-        <span class="cs-label">Mobile Hotspots</span>
-        <div class="cs-title">MiFi<br>Hotspots</div>
-        <p class="cs-desc">Wi-Fi 7 and 5G hotspots engineered for enterprise teams, first responders, and business continuity. FIPS 140-3 certified. Carrier approved.</p>
-        <a href="hotspots.html" class="cs-cta">Explore Hotspots</a>
+  <!-- ═══ MOBILE STANDS — dark left / light right ═══ -->
+  <section id="mobile-stands">
+    <div class="cat-tile-block">
+      <div class="ct-copy ct-copy--dark">
+        <span class="ct-eyebrow">Mobile Stands</span>
+        <h2>Mobilize Every<br>Display.</h2>
+        <p>Heckler's next-generation rolling stand fleet lets your team move displays anywhere in minutes — with tool-free two-minute assembly and efficient global deployment at scale.</p>
+        <a href="mobile-stands.html" class="ct-cta">Shop Mobile Stands</a>
       </div>
-      <div class="cat-split-visual">
-        <img src="images/lifestyle-retail-backup.jpg" alt="Retail business using Inseego MiFi hotspot for 5G backup connectivity" class="lifestyle">
-      </div>
-    </div>
-    <div class="product-row-wrap">
-      <div class="product-row product-row--2">
-        <a href="hotspots.html#mifi-x-pro" class="pri">
-          <div class="pri-img"><img src="images/mifi-x-pro-wide.png" alt="MiFi X PRO"></div>
-          <div class="pri-model">MiFi X PRO</div>
-          <div class="pri-name">Inseego MiFi X PRO 5G Wi-Fi 7 Mobile Hotspot</div>
-          <div class="pri-specs">5G Sub-6 + mmWave · Wi-Fi 7 · Qualcomm X65 · FIPS 140-3 · 30 devices</div>
-          <div class="pri-rating"><span class="pri-stars">★★★★★</span><span class="pri-count">(312)</span></div>
-          <span class="pri-buy">Buy Now</span>
-        </a>
-        <a href="hotspots.html#mifi-pro-m4" class="pri">
-          <div class="pri-img"><img src="images/mifi-pro-m4.png" alt="MiFi PRO M4"></div>
-          <div class="pri-model">MiFi PRO M4</div>
-          <div class="pri-name">Inseego MiFi PRO M4 LTE Advanced Mobile Hotspot</div>
-          <div class="pri-specs">Cat 18 LTE · Wi-Fi 6 · 30 devices · Enterprise security · Extended battery</div>
-          <div class="pri-rating"><span class="pri-stars">★★★★★</span><span class="pri-count">(198)</span></div>
-          <span class="pri-buy">Buy Now</span>
-        </a>
+      <div class="ct-visual">
+        <img src="https://heckler.com/cdn/shop/files/AV_Cart_render_2x1_website.jpg?v=1728402208&width=1200"
+             alt="Heckler AV Cart mobile display stand">
       </div>
     </div>
-  </section>
-
-  <!-- ═══ INDOOR FIXED WIRELESS ═══ -->
-  <section id="indoor-fwa">
-    <div class="cat-split cat-split--flip">
-      <div class="cat-split-copy">
-        <span class="cs-label">Indoor Fixed Wireless Access</span>
-        <div class="cs-title">Wavemaker<br>Indoor</div>
-        <p class="cs-desc">High-throughput 5G FWA gateways delivering up to 7.5 Gbps for offices, retail, and hospitality — no fiber installation required.</p>
-        <a href="indoor-fwa.html" class="cs-cta">Explore Indoor FWA</a>
-      </div>
-      <div class="cat-split-visual">
-        <img src="images/lifestyle-enterprise-setup.jpg" alt="Business professional completing 5G indoor fixed wireless auto setup" class="lifestyle">
-      </div>
-    </div>
-    <div class="product-row-wrap">
-      <div class="product-row product-row--3" >
-        <a href="indoor-fwa.html#fx4200" class="pri">
-          <div class="pri-img"><img src="images/wavemaker-indoor-1.jpg" alt="Wavemaker FX4200"></div>
-          <div class="pri-model">Wavemaker FX4200</div>
-          <div class="pri-name">5G mmWave Indoor Gateway — Up to 7.5 Gbps</div>
-          <div class="pri-specs">5G mmWave · Wi-Fi 6E · 4× GbE LAN · PoE · Qualcomm X65</div>
-          <div class="pri-rating"><span class="pri-stars">★★★★★</span><span class="pri-count">(87)</span></div>
-          <span class="pri-buy">Buy Now</span>
+    <div class="hk-product-strip">
+      <div class="hk-product-grid hk-product-grid--3">
+        <a href="mobile-stands.html#mobile-fleet" class="hk-card">
+          <div class="hk-card-img">
+            <img src="https://heckler.com/cdn/shop/files/Heckler_mobile_fleet_render_2.jpg?v=1738688010&width=535"
+                 alt="Heckler Mobile Fleet">
+          </div>
+          <div class="hk-card-body" style="padding-bottom:44px;">
+            <div class="hk-card-model">Mobile Fleet</div>
+            <div class="hk-card-name">Heckler Mobile Fleet</div>
+            <div class="hk-card-desc">Next-gen rolling stands for enterprise display mobility. Tool-free 2-min assembly.</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
         </a>
-        <a href="indoor-fwa.html#fx4100" class="pri">
-          <div class="pri-img"><img src="images/wavemaker-indoor-2.jpg" alt="Wavemaker FX4100"></div>
-          <div class="pri-model">Wavemaker FX4100</div>
-          <div class="pri-name">5G Sub-6 Indoor Gateway with Wi-Fi 6E</div>
-          <div class="pri-specs">5G Sub-6 · Wi-Fi 6E · 2.5 Gbps WAN · Multi-WAN failover · Qualcomm X62</div>
-          <div class="pri-rating"><span class="pri-stars">★★★★★</span><span class="pri-count">(143)</span></div>
-          <span class="pri-buy">Buy Now</span>
+        <a href="mobile-stands.html#express-install" class="hk-card">
+          <div class="hk-card-img">
+            <img src="https://heckler.com/cdn/shop/files/003_19aa8599-cbe6-484d-9381-c4329a396fb2.jpg?v=1751039645&width=535"
+                 alt="Heckler Express Install Stand">
+          </div>
+          <div class="hk-card-body" style="padding-bottom:44px;">
+            <div class="hk-card-model">Express Install</div>
+            <div class="hk-card-name">Heckler Express Install</div>
+            <div class="hk-card-desc">Single-person install stand — no contractors required. Ships ready to deploy.</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
         </a>
-        <a href="indoor-fwa.html#fx3100" class="pri">
-          <div class="pri-img"><img src="images/wavemaker-series.avif" alt="Wavemaker FX3100"></div>
-          <div class="pri-model">Wavemaker FX3100</div>
-          <div class="pri-name">5G Sub-6 Indoor Gateway — Simple Self-Install</div>
-          <div class="pri-specs">5G Sub-6 · Wi-Fi 6 · 4× GbE · USB-C · Easy setup</div>
-          <div class="pri-rating"><span class="pri-stars">★★★★★</span><span class="pri-count">(221)</span></div>
-          <span class="pri-buy">Buy Now</span>
+        <a href="mobile-stands.html#av-carts" class="hk-card">
+          <div class="hk-card-img">
+            <img src="https://heckler.com/cdn/shop/collections/av_cart_homepage-7.jpg?v=1729032484&width=535"
+                 alt="Heckler AV Carts">
+          </div>
+          <div class="hk-card-body" style="padding-bottom:44px;">
+            <div class="hk-card-model">AV Carts</div>
+            <div class="hk-card-name">Heckler AV Carts</div>
+            <div class="hk-card-desc">The beloved Heckler AV Cart series — built for durability, designed to move.</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ═══ STORYTELLING — Inseego Connect ═══ -->
-  <section class="story-section">
-    <div class="story-inner">
-      <div class="story-copy">
-        <div class="story-label">Inseego Connect</div>
-        <h2>One Platform.<br>Total Control.</h2>
-        <p>We treat wireless as a unified edge rather than independent technologies. Inseego Connect coordinates connectivity and security through a single platform — removing the friction of managing incompatible tools.</p>
-        <ul class="story-list">
-          <li>Real-time device health and usage analytics</li>
-          <li>Zero-touch provisioning — deploy at scale without on-site IT</li>
-          <li>Remote diagnostics and over-the-air firmware management</li>
-          <li>Role-based access control and enterprise SSO integration</li>
-          <li>API-first architecture for ITSM and workflow automation</li>
-        </ul>
-        <a href="inseego-connect.html" class="btn btn-primary btn-arrow">Explore Inseego Connect</a>
+  <!-- ═══ IPAD MOUNTS — light left / dark right ═══ -->
+  <section id="ipad-mounts">
+    <div class="cat-tile-block cat-tile-block--flip">
+      <div class="ct-copy ct-copy--light">
+        <span class="ct-eyebrow">iPad Mounts</span>
+        <h2>Conference Room<br>Controls.</h2>
+        <p>Create conference room controls, meeting room schedulers, and digital signage with Heckler's iPad Wall Mount Hardware Collection — built for Apple, designed for business.</p>
+        <a href="ipad-mounts.html" class="ct-cta ct-cta--outline">See iPad Mounts</a>
       </div>
-      <div class="story-visual">
-        <img src="images/connect-security.png" alt="IT professional managing Inseego Connect platform">
+      <div class="ct-visual">
+        <img src="https://heckler.com/cdn/shop/files/H782herorender21x1.jpg?v=1770761479&width=1200"
+             alt="Heckler iPad Wall Mount in conference room">
       </div>
     </div>
-  </section>
-
-  <!-- ═══ OUTDOOR CPE ═══ -->
-  <section id="outdoor-cpe">
-    <div class="cat-split">
-      <div class="cat-split-copy">
-        <span class="cs-label">Outdoor CPE</span>
-        <div class="cs-title">Wavemaker<br>Outdoor</div>
-        <p class="cs-desc">IP67-rated outdoor 5G CPE for campus wireless, last-mile broadband, and multi-dwelling deployments. PoE powered, tool-free mounting.</p>
-        <a href="outdoor-cpe.html" class="cs-cta">Explore Outdoor CPE</a>
-      </div>
-      <div class="cat-split-visual">
-        <img src="images/lifestyle-retail-backup.jpg" alt="Business using Inseego outdoor 5G CPE for reliable connectivity" class="lifestyle">
-      </div>
-    </div>
-    <div class="product-row-wrap">
-      <div class="product-row product-row--3" >
-        <a href="outdoor-cpe.html#fw3000" class="pri">
-          <div class="pri-img"><img src="images/wavemaker-fw3000.png" alt="Wavemaker FW3000"></div>
-          <div class="pri-model">Wavemaker FW3000</div>
-          <div class="pri-name">5G Outdoor CPE — IP67 Rated</div>
-          <div class="pri-specs">5G Sub-6 · IP67 · Integrated directional antenna · PoE · Easy-aim mount</div>
-          <div class="pri-rating"><span class="pri-stars">★★★★★</span><span class="pri-count">(64)</span></div>
-          <span class="pri-buy">Buy Now</span>
+    <div class="hk-product-strip">
+      <div class="hk-product-grid hk-product-grid--4">
+        <a href="ipad-mounts.html#h755" class="hk-card">
+          <div class="hk-card-img">
+            <img src="https://heckler.com/cdn/shop/files/H755-BG.MXWallMount10thGen_1x1_2.jpg?v=1698442684&width=360"
+                 alt="Heckler MX Wall Mount 10th Gen">
+          </div>
+          <div class="hk-card-body" style="padding-bottom:44px;">
+            <div class="hk-card-model">H755</div>
+            <div class="hk-card-name">MX Wall Mount — 10th Gen</div>
+            <div class="hk-card-desc">iPad 10th gen wall mount for conference rooms.</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
         </a>
-        <a href="outdoor-cpe.html#fw2010" class="pri">
-          <div class="pri-img"><img src="images/wavemaker-fw2010.png" alt="Wavemaker FW2010"></div>
-          <div class="pri-model">Wavemaker FW2010</div>
-          <div class="pri-name">5G Outdoor CPE — Mid-Range Coverage</div>
-          <div class="pri-specs">5G Sub-6 · Weatherproof · GbE LAN · Compact form factor</div>
-          <div class="pri-rating"><span class="pri-stars">★★★★★</span><span class="pri-count">(41)</span></div>
-          <span class="pri-buy">Buy Now</span>
+        <a href="ipad-mounts.html#h659" class="hk-card">
+          <div class="hk-card-img">
+            <img src="https://heckler.com/cdn/shop/files/H659-BG.RoomSchedulerMountiPadMini6thGen_1x1_7.jpg?v=1697035778&width=360"
+                 alt="Heckler Room Scheduler Mount iPad Mini">
+          </div>
+          <div class="hk-card-body" style="padding-bottom:44px;">
+            <div class="hk-card-model">H659</div>
+            <div class="hk-card-name">Room Scheduler Mount — iPad Mini</div>
+            <div class="hk-card-desc">Room scheduling mount for iPad Mini 6th Gen.</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
         </a>
-        <a href="outdoor-cpe.html#fw2000" class="pri">
-          <div class="pri-img"><img src="images/wavemaker-fw2000.png" alt="Wavemaker FW2000"></div>
-          <div class="pri-model">Wavemaker FW2000</div>
-          <div class="pri-name">LTE Outdoor CPE — Cost-Effective Coverage</div>
-          <div class="pri-specs">4G LTE · Outdoor rated · Fast deployment · PoE powered</div>
-          <div class="pri-rating"><span class="pri-stars">★★★★★</span><span class="pri-count">(55)</span></div>
-          <span class="pri-buy">Buy Now</span>
+        <a href="ipad-mounts.html#h753" class="hk-card">
+          <div class="hk-card-img">
+            <img src="https://heckler.com/cdn/shop/files/H753-BG.RoomScheduler_1x1_5_8b06cd36-2f75-44db-aa85-a6ea3e0234ba.jpg?v=1697665974&width=360"
+                 alt="Heckler Room Scheduler Mount">
+          </div>
+          <div class="hk-card-body" style="padding-bottom:44px;">
+            <div class="hk-card-model">H753</div>
+            <div class="hk-card-name">Room Scheduler Mount</div>
+            <div class="hk-card-desc">Enterprise-grade room scheduling display mount.</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ IoT GATEWAYS ═══ -->
-  <section id="iot-gateways">
-    <div class="cat-split cat-split--flip">
-      <div class="cat-split-copy">
-        <span class="cs-label">IoT Gateways</span>
-        <div class="cs-title">Industrial<br>IoT</div>
-        <p class="cs-desc">Industrial-grade cellular gateways for remote monitoring, fleet tracking, and critical infrastructure. Built for harsh environments and always-on operations.</p>
-        <a href="iot-gateways.html" class="cs-cta">Explore IoT Gateways</a>
-      </div>
-      <div class="cat-split-visual">
-        <img src="images/lifestyle-enterprise-setup.jpg" alt="Industrial professional managing Inseego IoT gateway deployment" class="lifestyle">
-      </div>
-    </div>
-    <div class="product-row-wrap">
-      <div class="product-row product-row--3" >
-        <a href="iot-gateways.html#s2000e" class="pri">
-          <div class="pri-img"><img src="images/iot-context-2.png" alt="Inseego S2000e"></div>
-          <div class="pri-model">Inseego S2000e</div>
-          <div class="pri-name">Enterprise 5G IoT Gateway with Edge Compute</div>
-          <div class="pri-specs">5G Sub-6 · Dual SIM · Serial/USB/GPIO · Edge compute · -40°C to 70°C</div>
-          <div class="pri-rating"><span class="pri-stars">★★★★★</span><span class="pri-count">(109)</span></div>
-          <span class="pri-buy">Buy Now</span>
-        </a>
-        <a href="iot-gateways.html#s2000" class="pri">
-          <div class="pri-img"><img src="images/iot-product-alt.png" alt="Inseego S2000"></div>
-          <div class="pri-model">Inseego S2000</div>
-          <div class="pri-name">5G IoT Gateway — Field &amp; Remote Deployments</div>
-          <div class="pri-specs">5G Sub-6 · Dual SIM · GPS · DIN-rail · Wide temperature range</div>
-          <div class="pri-rating"><span class="pri-stars">★★★★★</span><span class="pri-count">(88)</span></div>
-          <span class="pri-buy">Buy Now</span>
-        </a>
-        <a href="iot-gateways.html#skyus-160" class="pri">
-          <div class="pri-img"><img src="images/skyus-160.png" alt="Skyus 160"></div>
-          <div class="pri-model">Skyus 160</div>
-          <div class="pri-name">Industrial LTE Gateway with Serial &amp; GPS</div>
-          <div class="pri-specs">LTE Cat 6 · RS-232 serial · GPS · Rugged housing · DIN-rail mount</div>
-          <div class="pri-rating"><span class="pri-stars">★★★★★</span><span class="pri-count">(77)</span></div>
-          <span class="pri-buy">Buy Now</span>
+        <a href="ipad-mounts.html" class="hk-card">
+          <div class="hk-card-img">
+            <img src="https://heckler.com/cdn/shop/products/11-18iPadminiwallmountMX.jpg?v=1722295764&width=360"
+                 alt="Heckler iPad Mini Wall Mount MX">
+          </div>
+          <div class="hk-card-body" style="padding-bottom:44px;">
+            <div class="hk-card-model">Mini MX</div>
+            <div class="hk-card-name">iPad Mini Wall Mount MX</div>
+            <div class="hk-card-desc">Compact wall mount for iPad Mini — digital signage &amp; controls.</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ═══ INSEEGO CONNECT SPOTLIGHT ═══ -->
-  <section class="spotlight-banner">
-    <div class="spotlight-inner">
-      <div class="spotlight-copy">
-        <span class="sp-eyebrow">Cloud Management</span>
-        <h2>The Wireless Edge,<br>Unified.</h2>
-        <p>Inseego Connect gives IT teams a single pane of glass for the entire device fleet — from provisioning to monitoring to security policy enforcement. Zero-touch. Always-on.</p>
-        <ul class="spotlight-list">
-          <li>Monitor 1.2M+ managed devices in real time</li>
-          <li>Push policies and firmware across the entire fleet instantly</li>
-          <li>Reduce on-site truck rolls with remote diagnostics</li>
-          <li>Integrate with existing ITSM via open REST APIs</li>
-        </ul>
-        <a href="inseego-connect.html" class="btn btn-primary btn-lg btn-arrow">Explore Inseego Connect</a>
+  <!-- ═══ CAMERA MOUNTS — dark left / right ═══ -->
+  <section id="camera-mounts">
+    <div class="cat-tile-block">
+      <div class="ct-copy ct-copy--dark">
+        <span class="ct-eyebrow">Camera Mounts</span>
+        <h2>Video Meeting<br>Ready.</h2>
+        <p>Heckler camera mounts and accessories make every meeting room look professional — from Logitech Scribe whiteboard mounts to tabletop and ceiling-mount solutions.</p>
+        <a href="camera-mounts.html" class="ct-cta">See Camera Mounts</a>
       </div>
-      <div class="spotlight-stats">
-        <div class="sp-stat">
-          <span class="sp-num">1.2M+</span>
-          <span class="sp-label">Managed Devices</span>
-        </div>
-        <div class="sp-stat">
-          <span class="sp-num">55+</span>
-          <span class="sp-label">Countries</span>
-        </div>
-        <div class="sp-stat">
-          <span class="sp-num">99.9%</span>
-          <span class="sp-label">Platform Uptime</span>
-        </div>
-        <div class="sp-stat">
-          <span class="sp-num">Zero</span>
-          <span class="sp-label">Touch Deploy</span>
-        </div>
+      <div class="ct-visual">
+        <img src="https://heckler.com/cdn/shop/files/H872-WT._Whiteboard_Mount_Logitech_Scribe_Header_Full_2x1_1.jpg?v=1692388521&width=1200"
+             alt="Heckler Whiteboard Mount Logitech Scribe">
+      </div>
+    </div>
+    <div class="hk-product-strip hk-product-strip--dark">
+      <div class="hk-product-grid hk-product-grid--4">
+        <a href="camera-mounts.html#h872" class="hk-card hk-card--dark">
+          <div class="hk-card-img">
+            <img src="https://heckler.com/cdn/shop/files/H872-WT.WhiteboardMountLogitechScribe_Header_1x1_1.jpg?v=1692388390&width=360"
+                 alt="Heckler Whiteboard Mount Logitech Scribe">
+          </div>
+          <div class="hk-card-body" style="padding-bottom:44px;">
+            <div class="hk-card-model">H872</div>
+            <div class="hk-card-name">Whiteboard Mount — Logitech Scribe</div>
+            <div class="hk-card-desc">Precision mount for Logitech Scribe whiteboard camera.</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="camera-mounts.html#h597" class="hk-card hk-card--dark">
+          <div class="hk-card-img">
+            <img src="https://heckler.com/cdn/shop/files/H59716.jpg?v=1769551513&width=360"
+                 alt="Heckler H597 Camera Mount">
+          </div>
+          <div class="hk-card-body" style="padding-bottom:44px;">
+            <div class="hk-card-model">H597</div>
+            <div class="hk-card-name">Camera Mount H597</div>
+            <div class="hk-card-desc">Versatile video meeting camera mount for huddle rooms.</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="camera-mounts.html#t501" class="hk-card hk-card--dark">
+          <div class="hk-card-img">
+            <img src="https://heckler.com/cdn/shop/files/T501.HecklerTripodHead_1x1_1.jpg?v=1697132213&width=360"
+                 alt="Heckler Tripod Head T501">
+          </div>
+          <div class="hk-card-body" style="padding-bottom:44px;">
+            <div class="hk-card-model">T501</div>
+            <div class="hk-card-name">Heckler Tripod Head</div>
+            <div class="hk-card-desc">Professional tripod head for video conferencing cameras.</div>
+          </div>
+          <span class="hk-card-buy">Shop Now</span>
+        </a>
+        <a href="camera-mounts.html" class="hk-card hk-card--dark">
+          <div class="hk-card-img" style="background:#1A1B18;">
+            <img src="https://heckler.com/cdn/shop/files/10-06_Textile_cover-2_square_349c2cf2-5e5e-4f80-9a8c-0301855db60e.png?v=1707238168&width=360"
+                 alt="Heckler Custom Covers">
+          </div>
+          <div class="hk-card-body" style="padding-bottom:44px;">
+            <div class="hk-card-model">Custom</div>
+            <div class="hk-card-name">Custom Covers</div>
+            <div class="hk-card-desc">Textile and UV-print covers to match your brand.</div>
+          </div>
+          <span class="hk-card-buy">See Options</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ═══ CARRIER CERTIFICATIONS ═══ -->
-  <div class="carrier-strip">
-    <div class="carrier-strip-inner">
-      <span class="carrier-strip-label">Certified on</span>
-      <div class="carrier-badge">
-        <span class="carrier-name" style="color:#CD040B;">Verizon</span>
-        <span class="carrier-sub">Business Certified</span>
+  <!-- ═══ TRUSTED BY ═══ -->
+  <div class="hk-trusted">
+    <div class="hk-trusted-label">Trusted by the World's Most Innovative Teams</div>
+    <div class="hk-trusted-logos">
+      <img src="https://heckler.com/cdn/shop/files/amazon_bw.png?v=1660596187&width=360" alt="Amazon">
+      <img src="https://heckler.com/cdn/shop/files/microsoft_bw.png?v=1660596484&width=360" alt="Microsoft">
+      <img src="https://heckler.com/cdn/shop/files/zoom_bw.png?v=1660596445&width=360" alt="Zoom">
+      <img src="https://heckler.com/cdn/shop/files/logitech_color.png?v=1660592612&width=360" alt="Logitech">
+      <img src="https://heckler.com/cdn/shop/files/airbnb_bw.png?v=1660596176&width=360" alt="Airbnb">
+      <img src="https://heckler.com/cdn/shop/files/indeed_bw.png?v=1660596209&width=360" alt="Indeed">
+      <img src="https://heckler.com/cdn/shop/files/capital_one_bw.png?v=1660596200&width=360" alt="Capital One">
+    </div>
+  </div>
+
+  <!-- ═══ KNOWLEDGE PAGE TEASERS — Lecterns + Walls ═══ -->
+  <div class="hk-knowledge-row">
+    <div class="hk-knowledge-tile">
+      <img src="https://heckler.com/cdn/shop/files/Lectern_Instructor_2x1_PS_sharp_corner_06b49634-c081-497b-b56c-217c15d6e074.jpg?v=1721083478&width=1200"
+           alt="Heckler Lectern in lecture hall">
+      <div class="hk-knowledge-overlay">
+        <div class="hk-knowledge-label">AV Lecterns</div>
+        <div class="hk-knowledge-title">Heckler Lectern</div>
+        <div class="hk-knowledge-desc">Completely reimagined. Significantly improved experience for instructors, AV teams, and learners.</div>
+        <a href="lecterns.html" class="hk-knowledge-cta">Learn More</a>
       </div>
-      <div class="carrier-badge">
-        <span class="carrier-name" style="color:#00A8E0;">AT&amp;T</span>
-        <span class="carrier-sub">Business Certified</span>
-      </div>
-      <div class="carrier-badge">
-        <span class="carrier-name" style="color:#E20074;">T-Mobile</span>
-        <span class="carrier-sub">Business Certified</span>
+    </div>
+    <div class="hk-knowledge-tile">
+      <img src="https://heckler.com/cdn/shop/files/AVWallDualdisplayheroonebluewithpeople_354d90f3-eb04-45a2-a828-478dff82d81e.jpg?v=1663175128&width=1200"
+           alt="Heckler AV Wall dual display meeting room">
+      <div class="hk-knowledge-overlay">
+        <div class="hk-knowledge-label">AV Walls</div>
+        <div class="hk-knowledge-title">Heckler AV Wall</div>
+        <div class="hk-knowledge-desc">Configure impressive video meeting walls for each room — without the added expense of contractors.</div>
+        <a href="walls.html" class="hk-knowledge-cta">Configure Yours</a>
       </div>
     </div>
   </div>
 
-  <!-- ═══ COMPLIANCE & SECURITY ═══ -->
-  <section class="security-section">
-    <div class="container">
-      <div class="security-header">
-        <div>
-          <span class="security-label">Compliance &amp; Security</span>
-          <h2>Security you can trust</h2>
-        </div>
-      </div>
-      <div class="security-grid">
-
-        <!-- US Designed & Developed -->
-        <div class="sec-card">
-          <div class="sec-badge">
-            <svg viewBox="0 0 72 82" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs><clipPath id="sh1"><path d="M36 2L70 18L70 50C70 66 54 76 36 82C18 76 2 66 2 50L2 18Z"/></clipPath></defs>
-              <rect x="0" y="0" width="72" height="82" fill="#BF0A30" clip-path="url(#sh1)"/>
-              <rect x="0" y="11" width="72" height="11" fill="white" clip-path="url(#sh1)"/>
-              <rect x="0" y="33" width="72" height="11" fill="white" clip-path="url(#sh1)"/>
-              <rect x="0" y="55" width="72" height="11" fill="white" clip-path="url(#sh1)"/>
-              <rect x="0" y="0" width="36" height="38" fill="#002868" clip-path="url(#sh1)"/>
-              <circle cx="8"  cy="9"  r="2.4" fill="white" clip-path="url(#sh1)"/>
-              <circle cx="17" cy="9"  r="2.4" fill="white" clip-path="url(#sh1)"/>
-              <circle cx="26" cy="9"  r="2.4" fill="white" clip-path="url(#sh1)"/>
-              <circle cx="35" cy="9"  r="2.4" fill="white" clip-path="url(#sh1)"/>
-              <circle cx="12" cy="18" r="2.4" fill="white" clip-path="url(#sh1)"/>
-              <circle cx="21" cy="18" r="2.4" fill="white" clip-path="url(#sh1)"/>
-              <circle cx="30" cy="18" r="2.4" fill="white" clip-path="url(#sh1)"/>
-              <circle cx="8"  cy="27" r="2.4" fill="white" clip-path="url(#sh1)"/>
-              <circle cx="17" cy="27" r="2.4" fill="white" clip-path="url(#sh1)"/>
-              <circle cx="26" cy="27" r="2.4" fill="white" clip-path="url(#sh1)"/>
-              <circle cx="35" cy="27" r="2.4" fill="white" clip-path="url(#sh1)"/>
-              <path d="M36 2L70 18L70 50C70 66 54 76 36 82C18 76 2 66 2 50L2 18Z" stroke="rgba(0,0,0,0.1)" stroke-width="1.5"/>
-            </svg>
-          </div>
-          <div class="sec-card-body">
-            <h4 class="sec-title">US designed &amp; developed</h4>
-            <p class="sec-desc">Trust in US-designed, supported, and developed network devices for unmatched security.</p>
-          </div>
-        </div>
-
-        <!-- Intellectual Property -->
-        <div class="sec-card">
-          <div class="sec-badge">
-            <svg viewBox="0 0 72 82" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs><clipPath id="sh2"><path d="M36 2L70 18L70 50C70 66 54 76 36 82C18 76 2 66 2 50L2 18Z"/></clipPath></defs>
-              <rect x="0" y="0" width="72" height="82" fill="#0D1B2A" clip-path="url(#sh2)"/>
-              <rect x="0" y="58" width="72" height="14" fill="#BF0A30" clip-path="url(#sh2)"/>
-              <rect x="0" y="64" width="72" height="5"  fill="white"   clip-path="url(#sh2)"/>
-              <circle cx="14" cy="22" r="3"   fill="white" opacity="0.9" clip-path="url(#sh2)"/>
-              <circle cx="25" cy="14" r="3"   fill="white" opacity="0.9" clip-path="url(#sh2)"/>
-              <circle cx="36" cy="20" r="3"   fill="white" opacity="0.9" clip-path="url(#sh2)"/>
-              <circle cx="47" cy="14" r="3"   fill="white" opacity="0.9" clip-path="url(#sh2)"/>
-              <circle cx="58" cy="22" r="3"   fill="white" opacity="0.9" clip-path="url(#sh2)"/>
-              <circle cx="20" cy="34" r="2.2" fill="white" opacity="0.4" clip-path="url(#sh2)"/>
-              <circle cx="36" cy="38" r="2.2" fill="white" opacity="0.4" clip-path="url(#sh2)"/>
-              <circle cx="52" cy="34" r="2.2" fill="white" opacity="0.4" clip-path="url(#sh2)"/>
-              <path d="M36 2L70 18L70 50C70 66 54 76 36 82C18 76 2 66 2 50L2 18Z" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
-            </svg>
-          </div>
-          <div class="sec-card-body">
-            <h4 class="sec-title">Critical IP is US owned</h4>
-            <p class="sec-desc">U.S.-based IP and support are vital for national security, safeguarding advanced 5G tech infrastructure.</p>
-          </div>
-        </div>
-
-        <!-- TAA Compliant -->
-        <div class="sec-card">
-          <div class="sec-badge">
-            <svg viewBox="0 0 72 82" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M36 2L70 18L70 50C70 66 54 76 36 82C18 76 2 66 2 50L2 18Z" fill="#0a2a3c"/>
-              <path d="M36 8L64 21L64 49C64 63 51 72 36 77C21 72 8 63 8 49L8 21Z" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
-              <circle cx="24" cy="23" r="2.6" fill="white" opacity="0.7"/>
-              <circle cx="36" cy="19" r="3.2" fill="white" opacity="0.9"/>
-              <circle cx="48" cy="23" r="2.6" fill="white" opacity="0.7"/>
-              <line x1="18" y1="33" x2="54" y2="33" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
-              <text x="36" y="54" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="900" font-size="22" fill="white" letter-spacing="-0.5">TAA</text>
-            </svg>
-          </div>
-          <div class="sec-card-body">
-            <h4 class="sec-title">TAA Compliant</h4>
-            <p class="sec-desc">Our devices are Trade Agreements Act (TAA) compliant, suitable for government and public sector.</p>
-            <a href="inseego-connect.html" class="sec-link">Learn more</a>
-          </div>
-        </div>
-
-        <!-- FIPS 140-3 -->
-        <div class="sec-card">
-          <div class="sec-badge">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="38" fill="#002D72"/>
-              <circle cx="40" cy="40" r="33" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
-              <circle cx="40" cy="40" r="29" fill="#003A8C"/>
-              <text x="40" y="27" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="900" font-size="13" fill="white" letter-spacing="1.5">FIPS</text>
-              <text x="40" y="38" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="7.5" fill="rgba(255,255,255,0.65)" letter-spacing="1">CERTIFIED</text>
-              <text x="40" y="57" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="900" font-size="18" fill="#FFD814" letter-spacing="-0.5">140-3</text>
-              <circle cx="40" cy="6"  r="2.5" fill="rgba(255,255,255,0.5)"/>
-              <circle cx="31" cy="8"  r="1.8" fill="rgba(255,255,255,0.3)"/>
-              <circle cx="49" cy="8"  r="1.8" fill="rgba(255,255,255,0.3)"/>
-            </svg>
-          </div>
-          <div class="sec-card-body">
-            <h4 class="sec-title">FIPS 140-3</h4>
-            <p class="sec-desc">Devices with FIPS 140 validation that meet stringent government cryptographic security standards.</p>
-            <a href="inseego-connect.html" class="sec-link">Learn more</a>
-          </div>
-        </div>
-
-        <!-- Azure & AWS GovCloud -->
-        <div class="sec-card">
-          <div class="sec-badge sec-badge--cloud">
-            <svg viewBox="0 0 110 30" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 4L30 22H10L20 4Z" fill="#0078D4"/>
-              <path d="M15 10L24 22H10L15 10Z" fill="#50A1FF" opacity="0.55"/>
-              <text x="36" y="13" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="10" fill="#0078D4">Azure</text>
-              <text x="36" y="25" font-family="Inter,Arial,sans-serif" font-weight="500" font-size="8.5" fill="#555">Government</text>
-            </svg>
-            <div class="sec-badge-divider"></div>
-            <svg viewBox="0 0 110 30" xmlns="http://www.w3.org/2000/svg">
-              <text x="8" y="18" font-family="Inter,Arial,sans-serif" font-weight="900" font-size="17" fill="#232F3E">aws</text>
-              <path d="M8 22 Q28 30 52 22" stroke="#FF9900" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-              <path d="M48 19L52 22L48 25" stroke="#FF9900" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <text x="58" y="18" font-family="Inter,Arial,sans-serif" font-weight="600" font-size="9" fill="#444">GovCloud</text>
-            </svg>
-          </div>
-          <div class="sec-card-body">
-            <h4 class="sec-title">Azure &amp; AWS GovCloud</h4>
-            <p class="sec-desc">Inseego Connect can be deployed on GovCloud to meet government compliance requirements.</p>
-            <a href="inseego-connect.html" class="sec-link">Learn more</a>
-          </div>
-        </div>
-
-      </div>
+  <!-- ═══ 4-COL CATEGORY GRID ═══ -->
+  <section class="hk-cat-grid-section">
+    <div class="hk-section-label">Shop by Category</div>
+    <div class="hk-section-title">Everything for Your Meeting Rooms</div>
+    <div class="hk-cat-grid">
+      <a href="mobile-stands.html" class="hk-cat-card">
+        <img src="https://heckler.com/cdn/shop/collections/av_cart_homepage-7.jpg?v=1729032484&width=535"
+             alt="Mobile Stands">
+        <span class="hk-cat-pill">Mobile Stands</span>
+      </a>
+      <a href="ipad-mounts.html" class="hk-cat-card">
+        <img src="https://heckler.com/cdn/shop/files/wall_mount_collection_2.jpg?v=1661885449&width=535"
+             alt="iPad Mounts">
+        <span class="hk-cat-pill">iPad Mounts</span>
+      </a>
+      <a href="camera-mounts.html" class="hk-cat-card">
+        <img src="https://heckler.com/cdn/shop/files/Cam_mount_collection_0d4d0ba0-2922-4a8d-b76d-5e519677b639.jpg?v=1661884882&width=535"
+             alt="Camera Mounts">
+        <span class="hk-cat-pill">Camera Mounts</span>
+      </a>
+      <a href="lecterns.html" class="hk-cat-card">
+        <img src="https://heckler.com/cdn/shop/files/heckler-lectern-collection.jpg?v=1705532128&width=535"
+             alt="Lecterns">
+        <span class="hk-cat-pill">Lecterns</span>
+      </a>
     </div>
   </section>
 
-  <!-- ═══ CTA ═══ -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>Find the Right Inseego Solution</h2>
-      <p>Wi-Fi 7 hotspots, multi-gig FWA gateways, rugged IoT — Inseego covers every wireless edge use case.</p>
-      <div class="actions">
-        <a href="hotspots.html" class="btn btn-primary btn-lg btn-arrow">Shop Mobile Hotspots</a>
-        <a href="indoor-fwa.html" class="btn btn-outline-white btn-lg">Shop Fixed Wireless</a>
-      </div>
+  <!-- ═══ CTA FOOTER ═══ -->
+  <section class="hk-cta-section">
+    <div class="hk-cta-eyebrow">Premium AV Furniture</div>
+    <h2>Built for the Way<br>Teams Work Today.</h2>
+    <p>Tool-free setup. Ships free over $99. Trusted by Amazon, Microsoft, Zoom, and thousands of enterprise teams worldwide.</p>
+    <div class="hk-cta-btns">
+      <a href="mobile-stands.html" class="primary">Shop Mobile Stands</a>
+      <a href="ipad-mounts.html" class="outline">iPad Mounts</a>
     </div>
   </section>
 
   </div><!-- /.brand-store-wrap -->
 
   <div id="site-footer"></div>
+
   <script src="main.js"></script>
 </body>
 </html>
