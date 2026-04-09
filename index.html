@@ -23,7 +23,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 40px;
-      align-items: center;
+      align-items: stretch;
     }
     .heckler-hero-eyebrow {
       display: inline-block;
@@ -93,35 +93,17 @@
 
     /* Hero image */
     .heckler-hero-visual {
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      height: 100%;
+      overflow: hidden;
+      border-radius: 12px;
+      align-self: stretch;
+      min-height: 360px;
     }
     .heckler-hero-visual img {
       width: 100%;
-      max-width: 580px;
-      height: clamp(320px, 40vw, 520px);
-      object-fit: contain;
-      object-position: bottom right;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
-
-    /* Carousel dots */
-    .hero-dots {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      padding: 20px 0;
-      background: #1A1B18;
-    }
-    .hero-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.25);
-      cursor: pointer;
-      transition: background .2s;
-    }
-    .hero-dot.active { background: #0EBBFF; width: 24px; border-radius: 4px; }
 
     /* ── Category split tiles ── */
     .cat-tile-block {
@@ -239,7 +221,7 @@
       object-fit: cover;
       display: block;
     }
-    .hk-card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+    .hk-card-body { padding: 16px 16px 52px; flex: 1; display: flex; flex-direction: column; }
     .hk-card-model { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0EBBFF; margin-bottom: 4px; }
     .hk-card-name { font-size: 0.88rem; font-weight: 700; line-height: 1.35; margin-bottom: 6px; }
     .hk-card-desc { font-size: 0.78rem; color: #666; line-height: 1.45; flex: 1; }
@@ -503,11 +485,6 @@
              alt="Heckler rolling display stands in a modern conference room">
       </div>
     </div>
-    <div class="hero-dots">
-      <div class="hero-dot active"></div>
-      <div class="hero-dot"></div>
-      <div class="hero-dot"></div>
-    </div>
   </section>
 
   <!-- ═══ MOBILE STANDS — dark left / light right ═══ -->
@@ -552,7 +529,7 @@
         </a>
         <a href="mobile-stands.html#av-carts" class="hk-card hk-card--dark">
           <div class="hk-card-img">
-            <img src="https://heckler.com/cdn/shop/collections/av_cart_homepage-7.jpg?v=1729032484&width=535"
+            <img src="https://heckler.com/cdn/shop/products/Avcartprime2.jpg?v=1660770883&width=535"
                  alt="Heckler AV Carts">
           </div>
           <div class="hk-card-body" style="padding-bottom:44px;">
