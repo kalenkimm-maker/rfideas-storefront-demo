@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rf IDEAS | Biometric Fingerprint Readers — WAVE ID® Bio MFA</title>
+  <link rel="stylesheet" href="styles_v2.css">
+  <style>
+    /* ── Biometric page ── */
+
+    /* Hero */
+    .bio-hero {
+      background:#151537; color:#fff;
+      border-radius:16px; max-width:1200px; margin:0 auto;
+      padding:clamp(56px,8vw,100px) clamp(24px,5vw,72px);
+      position:relative; overflow:hidden;
+    }
+    .bio-hero canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+    .bio-hero::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at 75% 50%, rgba(237,32,36,0.16) 0%, transparent 60%);
+      pointer-events:none;
+    }
+    .bio-hero-inner {
+      max-width:1200px; margin:0 auto;
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:48px; align-items:center; position:relative; z-index:1;
+    }
+    .bio-hero-eyebrow {
+      display:inline-block; font-size:0.72rem; font-weight:700;
+      letter-spacing:0.18em; text-transform:uppercase;
+      color:#ED2024; margin-bottom:18px;
+    }
+    .bio-hero h1 { font-size:clamp(28px,3.5vw,50px); font-weight:900; line-height:1.08; margin:0 0 20px; color:#fff; }
+    .bio-hero h1 span { color:#ED2024; }
+    .bio-hero-sub { font-size:clamp(0.95rem,1.5vw,1.08rem); color:rgba(255,255,255,0.72); max-width:480px; margin:0 0 32px; line-height:1.65; }
+    .bio-hero-actions { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px; }
+    .bio-hero-actions .btn-primary {
+      background:#ED2024; color:#fff; border-radius:999px;
+      padding:14px 28px; font-weight:700; font-size:0.9rem;
+      text-decoration:none; transition:opacity .2s;
+    }
+    .bio-hero-actions .btn-primary:hover { opacity:.85; text-decoration:none; }
+    .bio-hero-actions .btn-outline {
+      border:2px solid rgba(255,255,255,0.35); color:#fff;
+      border-radius:999px; padding:12px 26px; font-weight:600;
+      font-size:0.9rem; text-decoration:none; transition:border-color .2s;
+    }
+    .bio-hero-actions .btn-outline:hover { border-color:#ED2024; text-decoration:none; }
+    .bio-mfa-row { display:flex; gap:14px; flex-wrap:wrap; }
+    .bio-mfa-factor {
+      background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
+      border-radius:12px; padding:14px 18px; flex:1; min-width:120px;
+      text-align:center;
+    }
+    .bio-mfa-factor-icon { font-size:1.5rem; margin-bottom:6px; }
+    .bio-mfa-factor-label { font-size:0.72rem; font-weight:700; color:#fff; margin-bottom:3px; }
+    .bio-mfa-factor-sub { font-size:0.64rem; color:rgba(255,255,255,0.45); line-height:1.3; }
+    .bio-hero-visual {
+      height:clamp(300px,36vw,460px); border-radius:16px;
+      background:#1E1F50; display:flex; align-items:center; justify-content:center;
+      position:relative; overflow:hidden;
+    }
+    .bio-hero-visual::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at 50% 40%, rgba(237,32,36,0.22) 0%, transparent 65%);
+    }
+    .bio-hero-svg { position:relative; z-index:1; }
+
+    /* Section */
+    .bio-section { padding:clamp(32px,5vw,64px) clamp(20px,4vw,60px); }
+    .bio-section-head { text-align:center; margin-bottom:clamp(28px,4vw,48px); }
+    .bio-section-eyebrow {
+      font-size:0.72rem; font-weight:700; letter-spacing:0.18em;
+      text-transform:uppercase; color:#ED2024; margin-bottom:10px;
+    }
+    .bio-section-head h2 { font-size:clamp(22px,2.8vw,36px); font-weight:900; color:#151537; margin-bottom:10px; }
+    .bio-section-head p { color:#5a6778; max-width:560px; margin:0 auto; font-size:0.95rem; line-height:1.6; }
+
+    /* Breadcrumb */
+    .bio-breadcrumb {
+      max-width:1200px; margin:0 auto;
+      padding:10px clamp(20px,4vw,60px); font-size:0.78rem; color:#555;
+    }
+    .bio-breadcrumb a { color:#ED2024; text-decoration:none; }
+    .bio-breadcrumb a:hover { text-decoration:underline; }
+
+    /* Category splits */
+    .cat-tile-block {
+      display:grid; grid-template-columns:1fr 1fr;
+      max-width:1200px; margin:0 auto clamp(20px,2.5vw,28px);
+      border-radius:16px; overflow:hidden;
+    }
+    .cat-tile-block--flip .ct-copy { order:2; }
+    .cat-tile-block--flip .ct-visual { order:1; }
+    .ct-copy {
+      padding:clamp(40px,6vw,80px) clamp(24px,5vw,64px);
+      display:flex; flex-direction:column; justify-content:center;
+    }
+    .ct-copy--dark { background:#151537; color:#fff; }
+    .ct-copy--light { background:#fff; color:#151537; }
+    .ct-eyebrow { font-size:0.7rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#ED2024; margin-bottom:12px; }
+    .ct-copy--light .ct-eyebrow { color:#C41820; }
+    .ct-copy h2 { font-size:clamp(22px,2.8vw,36px); font-weight:900; line-height:1.15; margin:0 0 14px; }
+    .ct-copy p { font-size:0.92rem; line-height:1.65; margin:0 0 28px; opacity:.82; }
+    .ct-checklist { list-style:none; padding:0; margin:0 0 28px; display:flex; flex-direction:column; gap:8px; }
+    .ct-checklist li { display:flex; align-items:flex-start; gap:10px; font-size:0.85rem; line-height:1.4; }
+    .ct-checklist li::before {
+      content:''; flex-shrink:0; width:16px; height:16px; background:#ED2024; border-radius:50%; margin-top:1px;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      background-repeat:no-repeat; background-position:center;
+    }
+    .ct-copy--dark .ct-checklist li { color:rgba(255,255,255,0.82); }
+    .ct-cta {
+      display:inline-flex; align-items:center; gap:8px;
+      background:#ED2024; color:#fff; border-radius:999px;
+      padding:12px 24px; font-size:0.87rem; font-weight:700;
+      text-decoration:none; width:fit-content; transition:opacity .2s;
+    }
+    .ct-cta:hover { opacity:.85; text-decoration:none; }
+    .ct-cta--outline { background:transparent; border:2px solid #ED2024; color:#ED2024; }
+    .ct-copy--dark .ct-cta--outline { border-color:rgba(255,255,255,0.4); color:#fff; }
+    .ct-cta--outline:hover { opacity:.8; }
+    .ct-visual { overflow:hidden; position:relative; min-height:360px; }
+    .ct-visual img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; display:block; }
+    .ct-visual--pad { background:#edf1f7; display:flex; align-items:center; justify-content:center; }
+    .ct-visual--pad img { position:static; width:auto; height:clamp(200px,28vw,340px); object-fit:contain; }
+
+    /* Product spotlight */
+    .bio-spotlight {
+      max-width:1200px; margin:0 auto;
+      display:grid; grid-template-columns:1fr 1fr; gap:0; align-items:stretch;
+      background:#fff; border:1px solid #e8eaed; border-radius:20px; overflow:hidden;
+    }
+    .bio-spotlight-visual {
+      background:#1E1F50; min-height:420px;
+      display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+    }
+    .bio-spotlight-visual::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at 50% 40%, rgba(237,32,36,0.22) 0%, transparent 65%);
+    }
+    .bio-spotlight-img { position:relative; z-index:1; width:auto; height:clamp(200px,22vw,280px); object-fit:contain; }
+    .bio-spotlight-body { padding:clamp(32px,5vw,56px) clamp(24px,4vw,48px); }
+    .bio-spotlight-body .bio-section-eyebrow { text-align:left; margin-bottom:10px; display:block; }
+    .bio-spotlight-body h2 { font-size:clamp(22px,2.8vw,36px); font-weight:900; color:#151537; margin:0 0 14px; }
+    .bio-spotlight-body p { font-size:0.92rem; color:#5a6778; line-height:1.65; margin:0 0 24px; }
+    .bio-spec-list { display:flex; flex-direction:column; gap:0; margin-bottom:28px; }
+    .bio-spec-row { display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid #f0f2f5; font-size:0.82rem; }
+    .bio-spec-row:last-child { border-bottom:none; }
+    .bio-spec-label { color:#5a6778; font-weight:500; }
+    .bio-spec-value { color:#151537; font-weight:700; text-align:right; max-width:55%; }
+    .bio-add-cart {
+      display:inline-block; background:#FFD814; color:#0F1111;
+      border:1px solid #FCD200; border-radius:8px;
+      padding:10px 28px; font-size:0.85rem; font-weight:500;
+      text-decoration:none;
+    }
+
+    /* Compliance tiles */
+    .bio-compliance-grid {
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:16px; max-width:1200px; margin:0 auto;
+    }
+    .bio-comp-card {
+      background:#fff; border:1px solid #e8eaed; border-radius:16px;
+      padding:24px 20px; text-align:center;
+    }
+    .bio-comp-badge {
+      display:inline-block; background:#151537; color:#fff;
+      border-radius:8px; font-size:0.75rem; font-weight:800;
+      letter-spacing:0.06em; padding:6px 14px; margin-bottom:14px;
+    }
+    .bio-comp-title { font-size:0.9rem; font-weight:800; color:#151537; margin-bottom:8px; }
+    .bio-comp-desc { font-size:0.76rem; color:#5a6778; line-height:1.55; }
+
+    /* Dark MFA deep-dive banner */
+    .bio-deepdive-banner {
+      background:#151537; border-radius:16px;
+      max-width:1200px; margin:0 auto;
+      padding:clamp(48px,6vw,80px) clamp(24px,5vw,64px);
+      position:relative; overflow:hidden;
+    }
+    .bio-deepdive-banner::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at 25% 50%, rgba(237,32,36,0.16) 0%, transparent 60%);
+      pointer-events:none;
+    }
+    .bio-deepdive-inner { display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,5vw,72px); align-items:center; position:relative; }
+    .bio-deepdive-copy h2 { font-size:clamp(22px,2.8vw,36px); font-weight:900; color:#fff; margin:0 0 14px; }
+    .bio-deepdive-copy p { font-size:0.92rem; color:rgba(255,255,255,0.72); line-height:1.65; margin:0; }
+    .bio-deepdive-pills { display:flex; flex-direction:column; gap:12px; }
+    .bio-deepdive-pill {
+      background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+      border-radius:12px; padding:16px 20px;
+      display:flex; align-items:flex-start; gap:14px;
+    }
+    .bio-pill-icon {
+      width:36px; height:36px; flex-shrink:0;
+      background:rgba(237,32,36,0.2); border-radius:8px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .bio-pill-icon svg { width:18px; height:18px; stroke:#ED2024; fill:none; stroke-width:2; }
+    .bio-pill-text strong { display:block; font-size:0.85rem; font-weight:700; color:#fff; margin-bottom:3px; }
+    .bio-pill-text span { font-size:0.78rem; color:rgba(255,255,255,0.6); line-height:1.45; }
+
+    /* Stats */
+    .bio-stats {
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:1px; background:#e8eaed;
+      max-width:1200px; margin:0 auto; border-radius:16px; overflow:hidden;
+    }
+    .bio-stat { background:#fff; padding:36px 24px; text-align:center; }
+    .bio-stat-number { font-size:clamp(2rem,3.5vw,3rem); font-weight:900; color:#ED2024; line-height:1; margin-bottom:8px; }
+    .bio-stat-label { font-size:0.8rem; color:#5a6778; line-height:1.45; max-width:140px; margin:0 auto; }
+
+    /* CTA Banner */
+    .bio-cta-banner {
+      background:#151537; border-radius:16px;
+      max-width:1200px; margin:0 auto;
+      padding:clamp(48px,6vw,80px) clamp(24px,5vw,72px);
+      text-align:center; position:relative; overflow:hidden;
+    }
+    .bio-cta-banner::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at 50% 0%, rgba(237,32,36,0.22) 0%, transparent 60%);
+    }
+    .bio-cta-banner h2 { font-size:clamp(22px,3vw,40px); font-weight:900; color:#fff; margin-bottom:16px; position:relative; }
+    .bio-cta-banner p { color:rgba(255,255,255,0.7); font-size:1rem; max-width:540px; margin:0 auto 32px; line-height:1.6; position:relative; }
+    .bio-cta-actions { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:relative; }
+    .bio-cta-actions a { border-radius:999px; padding:14px 32px; font-weight:700; font-size:0.95rem; text-decoration:none; transition:opacity .2s; }
+    .bio-cta-actions a:first-child { background:#ED2024; color:#fff; }
+    .bio-cta-actions a:first-child:hover { opacity:.85; }
+    .bio-cta-actions a:last-child { border:2px solid rgba(255,255,255,0.4); color:#fff; }
+    .bio-cta-actions a:last-child:hover { border-color:#ED2024; }
+
+    @media (max-width:768px) {
+      .bio-hero-inner { grid-template-columns:1fr; }
+      .bio-hero-visual { display:none; }
+      .bio-mfa-row { gap:8px; }
+      .cat-tile-block { grid-template-columns:1fr; }
+      .cat-tile-block--flip .ct-copy { order:1; }
+      .cat-tile-block--flip .ct-visual { order:2; }
+      .ct-visual { min-height:220px; }
+      .bio-spotlight { grid-template-columns:1fr; }
+      .bio-spotlight-visual { min-height:240px; }
+      .bio-compliance-grid { grid-template-columns:repeat(2,1fr); }
+      .bio-deepdive-inner { grid-template-columns:1fr; }
+      .bio-stats { grid-template-columns:repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+<script>fetch('partials/header.html').then(r=>r.text()).then(h=>{document.getElementById('header-placeholder').innerHTML=h;});</script>
+
+<!-- BREADCRUMB -->
+<div class="bio-breadcrumb">
+  <a href="#">Amazon</a> › <a href="#">Industrial &amp; Scientific</a> › <a href="#">Security &amp; Surveillance</a> › <a href="index.html">rf IDEAS</a> › <span>Biometric Readers</span>
+</div>
+
+<!-- HERO -->
+<div class="bio-section" style="padding-top:0;">
+  <div class="bio-hero">
+    <canvas class="hero-page-canvas"></canvas>
+    <div class="bio-hero-inner">
+      <div>
+        <span class="bio-hero-eyebrow">Fingerprint · RFID · True MFA</span>
+        <h1>No Password.<br>No Shared PIN.<br><span>No Compromise.</span></h1>
+        <p class="bio-hero-sub">WAVE ID® Bio combines a full RFID credential reader with a Crossmatch fingerprint sensor — delivering true multi-factor authentication from a single USB device. Badge and biometric. One device, one tap.</p>
+        <div class="bio-hero-actions">
+          <a href="#spotlight" class="btn-primary">Shop WAVE ID® Bio</a>
+          <a href="dual-frequency.html" class="btn-outline">Compare All Readers →</a>
+        </div>
+        <div class="bio-mfa-row">
+          <div class="bio-mfa-factor">
+            <div class="bio-mfa-factor-icon">🪪</div>
+            <div class="bio-mfa-factor-label">Something You Have</div>
+            <div class="bio-mfa-factor-sub">RFID Card or Badge</div>
+          </div>
+          <div class="bio-mfa-factor">
+            <div class="bio-mfa-factor-icon">☝️</div>
+            <div class="bio-mfa-factor-label">Something You Are</div>
+            <div class="bio-mfa-factor-sub">Fingerprint Biometric</div>
+          </div>
+          <div class="bio-mfa-factor">
+            <div class="bio-mfa-factor-icon">🔐</div>
+            <div class="bio-mfa-factor-label">Result</div>
+            <div class="bio-mfa-factor-sub">True MFA — One Device</div>
+          </div>
+        </div>
+      </div>
+      <div class="bio-hero-visual">
+        <svg class="bio-hero-svg" width="200" height="260" viewBox="0 0 200 260" fill="none">
+          <!-- Reader body -->
+          <rect x="50" y="20" width="100" height="160" rx="16" fill="rgba(237,32,36,0.08)" stroke="#ED2024" stroke-width="1.5"/>
+          <!-- Screen/display area -->
+          <rect x="60" y="30" width="80" height="50" rx="8" fill="rgba(237,32,36,0.1)" stroke="#ED2024" stroke-width="1" opacity=".6"/>
+          <!-- Display content -->
+          <rect x="68" y="38" width="40" height="4" rx="2" fill="#ED2024" opacity=".4"/>
+          <rect x="68" y="46" width="28" height="3" rx="1.5" fill="rgba(255,255,255,0.2)"/>
+          <rect x="68" y="53" width="34" height="3" rx="1.5" fill="rgba(255,255,255,0.15)"/>
+          <!-- Fingerprint sensor area -->
+          <circle cx="100" cy="125" r="28" fill="rgba(237,32,36,0.08)" stroke="#ED2024" stroke-width="1.5"/>
+          <!-- Fingerprint ridges -->
+          <path d="M100 105 Q88 110 86 125 Q88 140 100 145" stroke="#ED2024" stroke-width="1" stroke-linecap="round" fill="none" opacity=".5"/>
+          <path d="M100 109 Q91 113 89 125 Q91 137 100 141" stroke="#ED2024" stroke-width="1" stroke-linecap="round" fill="none" opacity=".4"/>
+          <path d="M100 113 Q94 116 93 125 Q94 134 100 137" stroke="#ED2024" stroke-width="1" stroke-linecap="round" fill="none" opacity=".35"/>
+          <path d="M100 105 Q112 110 114 125 Q112 140 100 145" stroke="#ED2024" stroke-width="1" stroke-linecap="round" fill="none" opacity=".5"/>
+          <path d="M100 109 Q109 113 111 125 Q109 137 100 141" stroke="#ED2024" stroke-width="1" stroke-linecap="round" fill="none" opacity=".4"/>
+          <path d="M100 113 Q106 116 107 125 Q106 134 100 137" stroke="#ED2024" stroke-width="1" stroke-linecap="round" fill="none" opacity=".35"/>
+          <circle cx="100" cy="125" r="4" fill="#ED2024" opacity=".4"/>
+          <!-- LED indicators -->
+          <circle cx="76" cy="165" r="4" fill="#ED2024" opacity=".7"/>
+          <circle cx="100" cy="165" r="4" fill="rgba(237,32,36,0.3)" stroke="#ED2024" stroke-width="1"/>
+          <circle cx="124" cy="165" r="4" fill="rgba(237,32,36,0.3)" stroke="#ED2024" stroke-width="1"/>
+          <!-- USB cable -->
+          <line x1="100" y1="180" x2="100" y2="220" stroke="#ED2024" stroke-width="2" stroke-linecap="round" opacity=".3"/>
+          <rect x="88" y="220" width="24" height="8" rx="2" fill="rgba(237,32,36,0.2)" stroke="#ED2024" stroke-width="1"/>
+          <!-- Card read waves -->
+          <path d="M30 110 Q20 125 30 140" stroke="#ED2024" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".35"/>
+          <path d="M22 105 Q8 125 22 145" stroke="#ED2024" stroke-width="1" stroke-linecap="round" fill="none" opacity=".2"/>
+          <path d="M170 110 Q180 125 170 140" stroke="#ED2024" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".35"/>
+          <path d="M178 105 Q192 125 178 145" stroke="#ED2024" stroke-width="1" stroke-linecap="round" fill="none" opacity=".2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SPLIT 1: Healthcare EPCS (dark left) -->
+<div class="bio-section" style="padding-top:0;">
+  <div class="cat-tile-block">
+    <div class="ct-copy ct-copy--dark">
+      <div class="ct-eyebrow">Healthcare · HIPAA · EPCS</div>
+      <h2>EPCS-Compliant MFA at Every Clinical Workstation</h2>
+      <p>DEA Electronic Prescriptions for Controlled Substances (EPCS) requires two-factor authentication every time a clinician signs a prescription. WAVE ID® Bio delivers that with a single device — no separate OTP token, no app, no extra step.</p>
+      <ul class="ct-checklist">
+        <li>Meets DEA EPCS requirement for logical token + biometric MFA</li>
+        <li>Works with DrFirst, Surescripts, Imprivata Confirm ID, and Epic</li>
+        <li>Same device handles workstation login and EPCS signing</li>
+        <li>Fingerprint template stored locally on sensor — not transmitted</li>
+      </ul>
+      <a href="#spotlight" class="ct-cta">Shop WAVE ID® Bio</a>
+    </div>
+    <div class="ct-visual">
+      <img src="https://i.vimeocdn.com/video/1524163265-b2263e3c740d0159e12643e8c614ddc9ade42c730e6ead1b58318d9e4215fbee-d_960" alt="Biometric MFA reader in clinical healthcare environment">
+    </div>
+  </div>
+
+  <!-- SPLIT 2: Zero Trust / Enterprise (light right) -->
+  <div class="cat-tile-block cat-tile-block--flip">
+    <div class="ct-copy ct-copy--light">
+      <div class="ct-eyebrow">Zero Trust · Enterprise · High-Security</div>
+      <h2>Zero Trust Authentication Without the Zero Patience</h2>
+      <p>Zero Trust demands continuous verification — but that can't mean 30 seconds of friction at every workstation login. WAVE ID® Bio makes strong authentication feel frictionless. Tap the card, touch the sensor. Done in under two seconds.</p>
+      <ul class="ct-checklist">
+        <li>Replaces passwords, PINs, and push-notification MFA apps</li>
+        <li>Works with Microsoft Active Directory and Azure AD</li>
+        <li>Compatible with NIST SP 800-63 Assurance Level 3 deployments</li>
+        <li>Fingerprint never leaves the reader — biometric privacy preserved</li>
+      </ul>
+      <a href="#spotlight" class="ct-cta ct-cta--outline">Explore the Reader →</a>
+    </div>
+    <div class="ct-visual ct-visual--pad">
+      <img src="https://www.rfideas.com/sites/default/files/styles/content_area/public/2022-10/wave_id_bio.png" alt="WAVE ID Bio — biometric fingerprint MFA reader">
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT SPOTLIGHT -->
+<div id="spotlight" class="bio-section" style="background:#f5f7fa;">
+  <div class="bio-section-head">
+    <div class="bio-section-eyebrow">Featured Product</div>
+    <h2>WAVE ID® Bio</h2>
+    <p>RFID credential reader plus Crossmatch fingerprint sensor in a single USB device — true MFA, no username or password required.</p>
+  </div>
+  <div class="bio-spotlight">
+    <div class="bio-spotlight-visual">
+      <img class="bio-spotlight-img" src="https://www.rfideas.com/sites/default/files/styles/content_area/public/2022-10/wave_id_bio.png" alt="WAVE ID Bio biometric fingerprint reader">
+    </div>
+    <div class="bio-spotlight-body">
+      <span class="bio-section-eyebrow">WAVE ID® Platform · Biometric MFA</span>
+      <h2>WAVE ID® Bio</h2>
+      <p>The WAVE ID® Bio combines the full credential coverage of the WAVE ID® Plus with a Crossmatch optical fingerprint sensor — delivering FIDO-class multi-factor authentication from a single USB device that looks like an ordinary reader.</p>
+      <div class="bio-spec-list">
+        <div class="bio-spec-row">
+          <span class="bio-spec-label">Card Frequencies</span>
+          <span class="bio-spec-value">125 kHz + 13.56 MHz (dual-frequency)</span>
+        </div>
+        <div class="bio-spec-row">
+          <span class="bio-spec-label">Biometric Sensor</span>
+          <span class="bio-spec-value">Crossmatch optical fingerprint — 500 dpi</span>
+        </div>
+        <div class="bio-spec-row">
+          <span class="bio-spec-label">Template Storage</span>
+          <span class="bio-spec-value">On-sensor — never transmitted</span>
+        </div>
+        <div class="bio-spec-row">
+          <span class="bio-spec-label">Authentication</span>
+          <span class="bio-spec-value">RFID + fingerprint (true 2FA)</span>
+        </div>
+        <div class="bio-spec-row">
+          <span class="bio-spec-label">Interface</span>
+          <span class="bio-spec-value">USB-A / USB-C</span>
+        </div>
+        <div class="bio-spec-row">
+          <span class="bio-spec-label">Compliance</span>
+          <span class="bio-spec-value">HIPAA · EPCS · NIST 800-63 AAL3</span>
+        </div>
+        <div class="bio-spec-row">
+          <span class="bio-spec-label">Driver Required</span>
+          <span class="bio-spec-value">None (USB HID composite)</span>
+        </div>
+      </div>
+      <a href="#" class="bio-add-cart">Add to Cart</a>
+    </div>
+  </div>
+</div>
+
+<!-- COMPLIANCE TILES -->
+<div class="bio-section" style="padding-top:0;">
+  <div class="bio-section-head">
+    <div class="bio-section-eyebrow">Compliance Coverage</div>
+    <h2>One Device. Every Requirement.</h2>
+    <p>WAVE ID® Bio is purpose-built for the compliance frameworks that demand the highest assurance levels.</p>
+  </div>
+  <div class="bio-compliance-grid">
+    <div class="bio-comp-card">
+      <div class="bio-comp-badge">HIPAA</div>
+      <div class="bio-comp-title">Healthcare Privacy</div>
+      <div class="bio-comp-desc">Unique user identification and automatic logoff requirements met through badge-based tap-in / tap-out with biometric verification.</div>
+    </div>
+    <div class="bio-comp-card">
+      <div class="bio-comp-badge">EPCS</div>
+      <div class="bio-comp-title">Controlled Substances</div>
+      <div class="bio-comp-desc">DEA EPCS mandates two-factor authentication for every electronic prescription of controlled substances. WAVE ID® Bio satisfies both factors in a single step.</div>
+    </div>
+    <div class="bio-comp-card">
+      <div class="bio-comp-badge">NIST AAL3</div>
+      <div class="bio-comp-title">Zero Trust Authentication</div>
+      <div class="bio-comp-desc">Meets NIST SP 800-63 Authenticator Assurance Level 3 requirements — the highest level, requiring hardware-based authentication with biometric binding.</div>
+    </div>
+    <div class="bio-comp-card">
+      <div class="bio-comp-badge">PIV / CAC</div>
+      <div class="bio-comp-title">Government &amp; Defense</div>
+      <div class="bio-comp-desc">PIV and CAC credential support with biometric PIN bypass — meeting HSPD-12 requirements for federal logical and physical access control.</div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS DARK BANNER -->
+<div class="bio-section" style="padding-top:0;">
+  <div class="bio-deepdive-banner">
+    <div class="bio-deepdive-inner">
+      <div class="bio-deepdive-copy">
+        <div class="bio-section-eyebrow" style="text-align:left; margin-bottom:10px;">How WAVE ID® Bio Works</div>
+        <h2>Two Factors. One Motion.</h2>
+        <p>Traditional MFA makes users carry a phone, wait for a push notification, or type a 6-digit code. WAVE ID® Bio collapses the entire authentication ceremony into a single physical gesture — badge on reader, finger on sensor. Two factors verified, session unlocked.</p>
+      </div>
+      <div class="bio-deepdive-pills">
+        <div class="bio-deepdive-pill">
+          <div class="bio-pill-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <div class="bio-pill-text">
+            <strong>Step 1 — Present Credential</strong>
+            <span>The RFID reader verifies the badge — confirming the card's cryptographic identity against the enrolled record.</span>
+          </div>
+        </div>
+        <div class="bio-deepdive-pill">
+          <div class="bio-pill-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div class="bio-pill-text">
+            <strong>Step 2 — Fingerprint Match</strong>
+            <span>The Crossmatch optical sensor captures and matches the live fingerprint against the enrolled template stored on the reader.</span>
+          </div>
+        </div>
+        <div class="bio-deepdive-pill">
+          <div class="bio-pill-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="bio-pill-text">
+            <strong>Step 3 — Session Granted</strong>
+            <span>Both factors verified. The reader signals the host — workstation unlocks or door opens. Total elapsed time: under 2 seconds.</span>
+          </div>
+        </div>
+        <div class="bio-deepdive-pill">
+          <div class="bio-pill-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="bio-pill-text">
+            <strong>On-Sensor Privacy</strong>
+            <span>Fingerprint templates are enrolled and matched entirely on the reader hardware. Biometric data never leaves the device or touches a network.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="bio-section" style="padding-top:0;">
+  <div class="bio-stats">
+    <div class="bio-stat">
+      <div class="bio-stat-number">80%</div>
+      <div class="bio-stat-label">Of data breaches involve stolen or weak passwords</div>
+    </div>
+    <div class="bio-stat">
+      <div class="bio-stat-number">&lt;2s</div>
+      <div class="bio-stat-label">Total authentication time — badge + fingerprint combined</div>
+    </div>
+    <div class="bio-stat">
+      <div class="bio-stat-number">0</div>
+      <div class="bio-stat-label">Passwords, PINs, or OTP codes required with WAVE ID® Bio</div>
+    </div>
+    <div class="bio-stat">
+      <div class="bio-stat-number">AAL3</div>
+      <div class="bio-stat-label">NIST 800-63 assurance level — the highest authentication tier</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BANNER -->
+<div class="bio-section" style="padding-top:0;">
+  <div class="bio-cta-banner">
+    <h2>Stop Waiting for a Breach to Justify MFA</h2>
+    <p>WAVE ID® Bio delivers enterprise-grade multi-factor authentication with the same tap gesture your team already uses to unlock doors. No behavior change. No extra hardware. Maximum security.</p>
+    <div class="bio-cta-actions">
+      <a href="#spotlight">Shop WAVE ID® Bio</a>
+      <a href="index.html">Browse All rf IDEAS Readers →</a>
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script>fetch('partials/footer.html').then(r=>r.text()).then(h=>{document.getElementById('footer-placeholder').innerHTML=h;});</script>
+<script src="main.js"></script>
+</body>
+</html>
