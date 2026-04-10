@@ -1,4 +1,4 @@
-/* Inseego Brand Store — Main JS */
+/* Amazon Brand Store — Main JS */
 
 /* ============================================================
    Partial loader
